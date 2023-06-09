@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemplo de Flexbox</title>
+  <style>
+    .card {
+      height: 100px;
+      width: 200px;
+      background-color: lightgray;
+      transition: height 0.3s;
+    }
+  
+    .card:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+  
+  <div class="card">
+    Conteúdo do Card
+  </div>
+  
+  <div class="card" id="card1">
+    <div class="card-content">
+      Conteúdo expandido do Card 1
+    </div>
+    <a href="#card1">Expandir Card 1</a>
+  </div>
+  
+  <div class="card" id="card2">
+    <div class="card-content">
+      Conteúdo expandido do Card 2
+    </div>
+    <a href="#card2">Expandir Card 2</a>
+  </div>
+  <style>
+    .box {
+      display: inline-block;
+      width: 200px;
+      height: 200px;
+      background-color: lightgray;
+      margin: 10px;
+    }
+  </style>
+  
+  <div class="box">
+    Conteúdo 1
+  </div>
+  
+  <div class="box">
+    Conteúdo 2
+  </div>

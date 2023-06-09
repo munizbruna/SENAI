@@ -1,0 +1,76 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+h1 {
+    color: #ffffff;
+    font-size: 36px;
+    margin-bottom: 0px;
+}
+header > p{
+    margin-bottom: 0px;
+    padding: 0px;
+    background-color: rgb(126, 11, 78);
+}
+
+header{
+background-color: aqua;
+background: url("avatar.png") no-repeat left/contain;
+background-attachment: fixed;
+ }   
+
+ .section #sobremim {
+    display:block;
+    align-items: center;
+  }
+  .section .profile-pic {
+    width: 200px;
+    height: auto;
+    display: block ;
+  }
+  .section .text {
+    display: block;
+  }
+
+p{
+    color: #f6f2f2;
+    font-size: 16px;
+}
+
+a{
+    color: blue;
+    text-decoration: solid;
+}
+
+/* Estilos das seções */
+.section {
+    padding: 40px;
+}
+
+.section h1 {
+    margin-bottom: 20px;
+}
+
+.section p {
+    margin-bottom: 10px;
+}
+
+.section img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.section ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+.section li {
+    margin-bottom: 5px;
+}
+

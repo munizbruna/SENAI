@@ -1,0 +1,13 @@
+explicações sobre html normal vs flex
+
+no html normal algumas tags possuem comportamento de linha (row) ou de colunas (columns) assim eles vão se comportar desta forma.
+//trazer exemplos dos dois tipos, para demonstrar o comportamento padrão
+exemplo de como seria complexo fazer algumas coisas como 3 divs ou paragrafos em linha, //
+
+Porém a propriedade flex orienta as tags numa hierarquia diferente, onde podemos ordenar elementos independente de sua forma tradicional. O seletor que receber o flex torna-se pai dos elementos que estão abaixo de sua hierarquia, assim é preciso que seja escolhido se seguiram em ordenação row ou columns com a propridade "flex-direction", os valores mais comuns são row e columns, porém é possível utilizar outras opções ainda... 
+//Flex = autolayout
+diferença é q no html precisamos criar a section ou a div para depois aplicar o flex, assim ele organizará os pacotes que estão dentro... uma caixa com caixas dentro.//
+
+
+Modelo do projeto individual -- explicar conceitos de display, de organização dos itens, de que as imagens não respeitam alguma padronizações e de que é preciso definir o tamanho se não ela vaza.
+Reforça a importancia de organizar os elementos, class e pastas. Ensinar o comando de puxar a imagem certinho e de navegar nas pastas. Passo a passo para criar a pagina pessoal 3-4h (organizar imagens antes de começar)
