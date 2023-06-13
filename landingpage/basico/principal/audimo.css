@@ -1,0 +1,169 @@
+/*                   Seção 1   --     principal                            */
+body {
+    margin: 0px;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: black;
+}
+
+.main {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: rgb(0, 0, 0);
+}
+
+.cover-main {
+    /* definição de estilo da imagem de capa */
+    object-fit: cover;
+    /* pode ser usada quando a imagem será completa na tela, wallpaper */
+    position: absolute;
+    width: 100%;
+    height: 80vh;
+    /* height: 80%; pode ser usado para regular o tamanho que a imagem vai ocupar na tela em altura*/
+    /* height: 100%; */
+    /*   margin-top: -200px;  */
+    /* faz a imagem subir com relação a imagem */
+    /*   positiAon: fixed; posicionamento fixo na tela*/
+    /*   top: 0;
+    right: 0; */
+    /*     background-attachment: fixed; */
+}
+
+.menu {
+    display: flex;
+    min-width: 100%;
+    height: 80px;
+    position: relative;
+    align-items: center;
+}
+
+.logo-menu {
+    height: 50px;
+}
+
+.link-menu {
+    margin: 10px 20px 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.cta-main {
+    position: relative;
+    margin-bottom: 10%;
+    margin-left: 5%;
+}
+
+@media (max-width: 700px) {
+    .logo-menu {
+        visibility: visible;
+    }
+
+    .menu {
+        visibility: hidden;
+    }
+
+    .cover-main {
+        object-fit: cover;
+        position: absolute;
+        height: 90vh;
+        width: 100%;
+    }
+
+    .cta-main {
+        position: relative;
+        margin-bottom: 30%;
+    }
+}
+
+/*                   Seção 2   --     Benefícios                            */
+
+.scroll-link:hover {
+    text-decoration: underline;
+    /* função de link para levar até a seção de planos com css */
+}
+
+.mockup {
+    height: 80vh;
+    width: 100%; 
+    display: flex;
+    /* o pai é flex, controla os filhos */
+    flex-direction: row;
+    /* orientação dos filhos é em linha, um ao lado do outro*/
+    background-color: blueviolet;
+   /*   justify-content: space-around;  */
+    align-items: center;
+
+}
+
+.mockup-video {
+    flex:1
+}
+
+.mockup-cta {
+    flex-direction: column;
+   
+    flex:1;  
+    display: flex;  
+ 
+    align-items: center;
+
+}
+
+.mockup1 {
+    height: 80vh;
+    width: 100%; 
+    display: flex;
+    /* o pai é flex, controla os filhos */
+    flex-direction: row;
+    /* orientação dos filhos é em linha, um ao lado do outro*/
+    background-color: blueviolet;
+   /*   justify-content: space-around;  */
+    align-items: center;
+
+}
+
+.mockup-video1 {
+    flex:1
+}
+
+.mockup-cta1 {
+    flex-direction: column;
+      flex:1;  
+    display: flex;  
+     align-items: center;
+
+}
+/*                   Seção 2   --     Benefícios                            */
+
+.planos{
+    height: 80vh;
+    background-color: blue;
+    text-align: center;
+    
+}
+
+
+.alinhaCards{
+    display: flex;
+    background-color: blueviolet;
+    justify-content: space-between;
+}
+
+.card{
+    background-color: rgb(1, 1, 1);
+    border-color: aliceblue;
+    height: 500px;
+    transition: height 0.3s;
+}
+ul{
+    text-align: justify;
+}
+
+  .card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+

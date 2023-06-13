@@ -11,3 +11,7 @@ diferença é q no html precisamos criar a section ou a div para depois aplicar 
 
 Modelo do projeto individual -- explicar conceitos de display, de organização dos itens, de que as imagens não respeitam alguma padronizações e de que é preciso definir o tamanho se não ela vaza.
 Reforça a importancia de organizar os elementos, class e pastas. Ensinar o comando de puxar a imagem certinho e de navegar nas pastas. Passo a passo para criar a pagina pessoal 3-4h (organizar imagens antes de começar)
+
+
+// o drama das imagens e vídeos//
+nos vimos que o flex permite que o espaço de uma div seja divido entre seus filhos, porém quando um destes filhos é uma imagem ou vídeo é preciso que o tamanho da mesma tenha sido determinado anteriormente, isso porque as propriedades que trabalham essa organização não farão isso, por tanto se aplicarmos um display flex em uma div que contem textos e imagens e a imagem for grande e não tiver sido redimensionada o espaço que será repartido é o que sobra depois da imagem, isso pode não só interferir na mesma section ou div mas nas que estão em volta também.
