@@ -1,7 +1,0 @@
-é possível conectar a sua conta do github ao vs code. Não vou cobrar isso de vocês, porém quem quiser pode seguir com esta opção.
-Para isso vamos criar uma pasta no github e clonar ela para o pc, existem outras formas, porém essa é a mais tranquila.
-//veja como fazer agora//
-
-Importante é gerenciar os arquivos, caso você passe um caminho de algum arquivo, imagem, link e estilo e o mesmo não estiver no lugar onde vc disse que estaria o arquivo vai quebrar e não terá a visualização como você projetou. 
-Então para resolver isso vamos criar um repositorio público no github com o nome SENAI, depois criem duas pastas, com os nomes landingpage, pessoal e dentro delas uma midias ou imagens, lembre-se de não incluir acentos, espaços e letras maiusculas. Na última pasta serão incluídas todas as imagens e mídias que serão usadas nos projetos.
-Em cada uma das pastas crie um arquivo css e html para que possamos ir salvando as etapas do projeto.
