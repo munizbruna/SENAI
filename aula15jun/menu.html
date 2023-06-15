@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menus com Display flex</title>
+    <style>
+        body *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            color: white;
+        }
+
+        img{
+            height:40px;
+        }
+        nav{
+            padding: 8px;
+        }
+        .button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2px 8px;
+            padding-bottom: 2px;
+            text-decoration: none;
+            background: rgb(12, 12, 255);
+            border-radius: 4px;
+        }
+        .menu1{
+            display: flex;
+            background-color: black;
+            margin-bottom: 30px;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu4{
+            display: flex;
+            background-color: rgb(108, 14, 14);
+            margin-bottom: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lista1{
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+        .menu2{
+            display: flex;
+            background-color: rgb(19, 5, 91);
+            margin-bottom: 30px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .lista2{
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 30px;
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <!-- MENU 1 -->
+        <nav class="menu1">
+        <img src="../pag_individual/imagens/logo.png" alt="">
+        <ul class="lista1">
+          <li>Sobre</li>
+          <li>Serviços</li>
+          <li>Depoimentos</li>
+        </ul>
+      
+        <a href="#" class="button">Contato</a>
+      </nav>
+      </section>
+ <!-- MENU 2 -->
+      <section>
+         <nav class="menu2">
+        <img src="../pag_individual/imagens/logo.png" alt="">
+        <ul class="lista2">
+          <li>Sobre</li>
+          <li>Serviços</li>
+          <li>Depoimentos</li>
+          <li><a href="#" class="button">Contato</a></li>
+        </ul>
+      
+        
+      </nav>
+      </section>
+      <!-- MENU 3 -->
+      <section>
+        <nav class="menu2">
+       
+       <ul class="lista2">
+         <li>Sobre</li>
+         <li>Serviços</li>
+         <li>Depoimentos</li>
+         <li><a href="#" class="button">Contato</a></li>
+       </ul>
+       <img src="../pag_individual/imagens/logo.png" alt="">
+       
+     </nav>
+     </section>
+
+     <!-- MENU 4 -->
+     <section>
+        <nav class="menu4">
+       
+       <ul class="lista1">
+         <li>Sobre</li>
+         <li>Serviços</li>
+         <img src="../pag_individual/imagens/logo.png" alt="">
+         <li>Depoimentos</li>
+         <li>Contato</a></li>
+       </ul>
+     
+       
+     </nav>
+     </section>
+</body>
+</html>
