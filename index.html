@@ -5,25 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        *{
+           /*  padding: 0;
+            margin: 0; */
+            box-sizing: border-box;
+        }
     body{
         background-color:black;
         color: white;
         padding: 20px;
        } 
-
-        
-       .projetos, a{
-        width: 600px;
-        background-color: navy;
+    h3, a{
         color: yellow;
         font-family: 'Courier New', Courier, monospace;
         font-size: 24px;
         text-decoration: none;
-        margin: 10px;
+        }
+
+    section{
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-evenly;
+    } 
+        
+       div{
+        width: 30vw;
+        height: auto;
+        background-color: navy;
+       /*  margin: 2%; */
+        padding: 2%;
        }
+
        img{
         width: 400px;
-        align-items: center;
        }
         header {
             font-size: 24px;
@@ -37,30 +51,54 @@
 <body>
     <header>
         <img src="./pag_individual/imagens/senai.jpg" alt="logo senai">
-    <h1>Técnico em Multímidiass 2023</h1>
+    <h1>Técnico em Multímidia 2023</h1>
     <h2>Projetos - Sprint 4</h2>
     </header>
+    <section>
     <div class="projetos">
-    <ul>
-        <a href="./pag_individual/individual.html"><li>
-            Formativa - Página Individual
-        </li></a>
-        <a href="./landingpage/basico/principal/basico.html"><li>
-            Avaliativa - Landing Page - Em grupo
-        </li></a>
-         <a href="./aula15jun/geral.html"><li>
-            Display exemplos
-        </li></a>
-        <a href="./aula15jun/menu.html"><li>
-            Resolução do exercício
-        </li></a>
-         <a href="https://excalidraw.com/"><li>
-            Excalidraw
-        </li></a>
-        <a href="https://www.fronteditor.dev/"><li>
-            Front Editor
-        </li></a>
-    </ul>
+        <h3>Projetos</h3>
+        <ul>
+            <a href="./pag_individual/individual.html">
+                <li>Formativa - Página Individual</li>
+            </a>
+            <a href="./landingpage/basico/principal/basico.html">
+                <li>Avaliativa - Landing Page - Em grupo</li>
+            </a>
+        </ul>
     </div>
+    <div class="atividades">
+        <h3>Atividades</h3>
+        <ul>
+            <a href="./aula15jun/geral.html">
+                <li>Display exemplos</li>
+            </a>
+            <a href="./aula15jun/menu.html">
+                <li>Aula 15/06</li>
+            </a>
+            <a href="">
+                <li>Aula 22/06</li>
+            </a>
+        </ul>
+    </div>
+
+    <div class="ferramentas">
+        <h3>Ferramentas</h3>
+        <ul>        
+            <a href="https://excalidraw.com/">
+                <li>Excalidraw</li>
+            </a>
+            <a href="https://www.fronteditor.dev/">
+                <li>Front Editor</li>
+            </a>
+            <a href="https://bulmatemplates.github.io/bulma-templates/">
+                <li>Bulma Templates</li>
+            </a>
+            <a href="https://pt.venngage.com/templates/diagrams/wireframe">
+                <li>Venngage Templates</li>
+            </a>
+
+        </ul>
+    </div>
+</section>
 </body>
 </html>
