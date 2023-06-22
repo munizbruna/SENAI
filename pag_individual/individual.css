@@ -35,10 +35,6 @@ h1{
         font-size: 100px;
         text-transform: uppercase;
     }
- 
-
-
-
 
     .perfil{
         width: 400px;
@@ -88,9 +84,24 @@ h1{
 
 .logo-small{
     height: auto;
-    width: 300px;
+    width: 200px;
 }
 .grupo{
     flex: 0 0 20%; 
     margin: 30px;
 } 
+
+@media (max-width: 700px)
+{
+    *{
+        font-size: medium;
+    }
+    .logo-small{
+        height: auto;
+        width: 120px;
+    }
+    img{
+        height: auto;
+        width: 80px;
+    }
+}
