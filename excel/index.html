@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratório Interativo: Função SE do Excel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4; /* Um branco-gelo suave */
+            color: #2c3e50; /* Azul escuro/cinza para texto principal */
+        }
+        .nav-category {
+            font-weight: 700;
+            color: #4a5568; /* Cinza para os títulos das categorias */
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            padding-left: 0.75rem;
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-left: 3px solid transparent;
+        }
+        .nav-link.active {
+            border-left-color: #3b82f6; /* Azul para o link ativo */
+            background-color: #eff6ff; /* Fundo azul claro para o link ativo */
+            color: #2563eb;
+            font-weight: 600;
+        }
+        .nav-link:hover {
+            background-color: #f0f2f5;
+            border-left-color: #93c5fd;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s;
+        }
+        .btn {
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .formula-card {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        table th {
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
+        
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-gray-800">Laboratório Interativo da Função SE</h1>
+            <p class="mt-2 text-lg text-gray-600">Selecione um exercício para praticar e veja a mágica acontecer.</p>
+        </header>
+
+        <div class="md:grid md:grid-cols-12 md:gap-8">
+            
+            <aside class="md:col-span-4 lg:col-span-3 mb-8 md:mb-0">
+                <nav id="exercise-nav" class="bg-white rounded-lg shadow-sm p-4 sticky top-8 max-h-[90vh] overflow-y-auto">
+                </nav>
+            </aside>
+
+            <main id="exercise-content" class="md:col-span-8 lg:col-span-9">
+            </main>
+
+        </div>
+
+    </div>
+
+    <script>
+        // Array contendo todos os exercícios, divididos por categoria.
+        const exercises = [
+            // Categoria Básico
+            {
+                category: "Básico",
+                title: "1. Aprovado/Reprovado",
+                objective: "Determinar se um aluno foi aprovado ou reprovado. A média para aprovação é 6.",
+                headers: ["Aluno", "Nota Final", "Situação"],
+                data: [["Ana", 7.5, ""], ["Bruno", 5.0, ""], ["Carlos", 9.0, ""], ["Daniela", 4.5, ""], ["Eduardo", 6.0, ""]],
+                formula: '=SE(B2>=6; "Aprovado"; "Reprovado")',
+                logic: (row) => parseFloat(row[1]) >= 6 ? "Aprovado" : "Reprovado"
+            },
+            {
+                category: "Básico",
+                title: "2. Controle de Estoque",
+                objective: 'Indicar "Repor Estoque" se a quantidade for menor que 20. Caso contrário, "OK".',
+                headers: ["Produto", "Quantidade", "Status"],
+                data: [["Caneta", 50, ""], ["Lápis", 15, ""], ["Borracha", 100, ""], ["Régua", 19, ""]],
+                formula: '=SE(B2<20; "Repor Estoque"; "OK")',
+                logic: (row) => parseInt(row[1]) < 20 ? "Repor Estoque" : "OK"
+            },
+            {
+                category: "Básico",
+                title: "3. Frete Grátis",
+                objective: 'Conceder "Frete Grátis" para compras acima de R$ 100. Caso contrário, o frete é "R$ 15,00".',
+                headers: ["Pedido", "Valor", "Custo do Frete"],
+                data: [["#1023", 95.50, ""], ["#1024", 150.00, ""], ["#1025", 100.00, ""], ["#1026", 250.75, ""]],
+                formula: '=SE(B2>100; "Frete Grátis"; "R$ 15,00")',
+                logic: (row) => parseFloat(row[1]) > 100 ? "Frete Grátis" : "R$ 15,00"
+            },
+            {
+                category: "Básico",
+                title: "4. Meta de Leitura",
+                objective: 'Verificar se um aluno atingiu a meta de 10 livros. Se sim, "Meta Atingida". Se não, "Pendente".',
+                headers: ["Aluno", "Livros Lidos", "Status Meta"],
+                data: [["Mariana", 12, ""], ["Jorge", 8, ""], ["Livia", 10, ""], ["Felipe", 5, ""]],
+                formula: '=SE(B2>=10; "Meta Atingida"; "Pendente")',
+                logic: (row) => parseInt(row[1]) >= 10 ? "Meta Atingida" : "Pendente"
+            },
+            {
+                category: "Básico",
+                title: "5. Verificação de Idade",
+                objective: 'Identificar se uma pessoa é "Maior de Idade" (>= 18) ou "Menor de Idade".',
+                headers: ["Nome", "Idade", "Classificação"],
+                data: [["Clara", 25, ""], ["Miguel", 17, ""], ["Sofia", 18, ""], ["Arthur", 16, ""]],
+                formula: '=SE(B2>=18; "Maior de Idade"; "Menor de Idade")',
+                logic: (row) => parseInt(row[1]) >= 18 ? "Maior de Idade" : "Menor de Idade"
+            },
+            {
+                category: "Básico",
+                title: "6. Status de Pagamento",
+                objective: 'Se o valor pago for igual ao da fatura, o status é "Pago". Caso contrário, é "Pendente".',
+                headers: ["Fatura", "Valor Fatura", "Valor Pago", "Status"],
+                data: [["#001", 150.00, 150.00, ""], ["#002", 200.00, 100.00, ""], ["#003", 75.50, 75.50, ""]],
+                formula: '=SE(C2=B2; "Pago"; "Pendente")',
+                logic: (row) => parseFloat(row[2]) === parseFloat(row[1]) ? "Pago" : "Pendente"
+            },
+            {
+                category: "Básico",
+                title: "7. Cálculo de Comissão Simples",
+                objective: "Se a venda for acima de R$ 1.000, a comissão é de R$ 50. Caso contrário, é de R$ 10.",
+                headers: ["Venda ID", "Valor", "Comissão"],
+                data: [["001", 1200, ""], ["002", 850, ""], ["003", 2500, ""], ["004", 990, ""]],
+                formula: '=SE(B2>1000; 50; 10)',
+                logic: (row) => (parseFloat(row[1]) > 1000 ? 50 : 10).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+            },
+            {
+                category: "Básico",
+                title: "8. Turno de Trabalho",
+                objective: 'Definir o turno como "Manhã" se a entrada for antes das 12:00, ou "Tarde" caso contrário.',
+                headers: ["Funcionário", "Hora Entrada", "Turno"],
+                data: [["Ana", "08:00", ""], ["Bruno", "13:30", ""], ["Carlos", "11:59", ""]],
+                formula: '=SE(B2<"12:00"; "Manhã"; "Tarde")',
+                logic: (row) => row[1] < "12:00" ? "Manhã" : "Tarde"
+            },
+            {
+                category: "Básico",
+                title: "9. Situação de Matrícula",
+                objective: 'Se a situação for "Ativo", exibir "Matrícula Regular". Se não, "Verificar Secretaria".',
+                headers: ["Aluno", "Situação", "Ação"],
+                data: [["Mariana", "Ativo", ""], ["Jorge", "Inativo", ""], ["Livia", "Ativo", ""]],
+                formula: '=SE(B2="Ativo"; "Matrícula Regular"; "Verificar Secretaria")',
+                logic: (row) => row[1] === "Ativo" ? "Matrícula Regular" : "Verificar Secretaria"
+            },
+            {
+                category: "Básico",
+                title: "10. Desconto de Aniversário",
+                objective: 'Conceder "Desconto de 10%" se o mês da compra for o mesmo do aniversário do cliente.',
+                headers: ["Cliente", "Mês Compra", "Mês Aniversário", "Desconto"],
+                data: [["Ana", "Setembro", "Setembro", ""], ["Bruno", "Agosto", "Outubro", ""], ["Carlos", "Janeiro", "Janeiro", ""]],
+                formula: '=SE(B2=C2; "Desconto de 10%"; "Sem Desconto")',
+                logic: (row) => row[1] === row[2] ? "Desconto de 10%" : "Sem Desconto"
+            },
+            // Categoria Intermediário
+            {
+                category: "Intermediário",
+                title: "11. Bônus com Condição 'E'",
+                objective: 'Conceder um bônus de R$ 250 aos vendedores que atingiram a meta de vendas ("Sim") E tiveram uma nota de avaliação igual ou superior a 8.',
+                headers: ["Vendedor", "Meta Atingida?", "Avaliação", "Bônus"],
+                data: [["João", "Sim", 9, ""], ["Maria", "Sim", 7, ""], ["Pedro", "Não", 10, ""], ["Sofia", "Sim", 8, ""]],
+                formula: '=SE(E(B2="Sim"; C2>=8); 250; 0)',
+                logic: (row) => (row[1] === "Sim" && parseInt(row[2]) >= 8) ? (250).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : (0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+            },
+            {
+                category: "Intermediário",
+                title: "12. Desconto com Condição 'OU'",
+                objective: 'Oferecer um desconto de 15% para clientes que são "VIP" OU que fizeram uma compra acima de R$ 500. Para os demais, o desconto é de 5%.',
+                headers: ["Cliente", "Tipo", "Compra", "Desconto"],
+                data: [["A", "VIP", 300, ""], ["B", "Normal", 600, ""], ["C", "Normal", 250, ""], ["D", "VIP", 1200, ""]],
+                formula: '=SE(OU(B2="VIP"; C2>500); "15%"; "5%")',
+                logic: (row) => (row[1] === "VIP" || parseFloat(row[2]) > 500) ? "15%" : "5%"
+            },
+            {
+                category: "Intermediário",
+                title: "13. Classificação de Desempenho (SE Aninhado)",
+                objective: "Classificar o desempenho: > 90 é 'Excelente', > 70 é 'Bom', > 50 é 'Regular', e <= 50 é 'Insuficiente'.",
+                headers: ["Funcionário", "Pontuação", "Desempenho"],
+                data: [["Ricardo", 95, ""], ["Fernanda", 78, ""], ["Lucas", 51, ""], ["Patrícia", 40, ""], ["Marcos", 89, ""]],
+                formula: '=SE(B2>90; "Excelente"; SE(B2>70; "Bom"; SE(B2>50; "Regular"; "Insuficiente")))',
+                logic: (row) => { const p = parseInt(row[1]); if (p > 90) return "Excelente"; if (p > 70) return "Bom"; if (p > 50) return "Regular"; return "Insuficiente"; }
+            },
+            {
+                category: "Intermediário",
+                title: "14. Domínio de E-mail",
+                objective: 'Identificar se um e-mail é corporativo (contém "@empresa.com") ou pessoal.',
+                headers: ["Cliente", "E-mail", "Tipo"],
+                data: [["Ana", "ana.s@empresa.com", ""], ["Bruno", "bruno123@email.com", ""], ["Carlos", "carlos.g@empresa.com", ""]],
+                formula: '=SE(ÉERROS(LOCALIZAR("@empresa.com"; B2)); "Pessoal"; "Corporativo")',
+                logic: (row) => row[1].includes("@empresa.com") ? "Corporativo" : "Pessoal"
+            },
+            {
+                category: "Intermediário",
+                title: "15. Status de Vencimento (Datas)",
+                objective: "Determinar o status da fatura ('Vencida', 'Vence Hoje', 'A Vencer'), considerando que hoje é 22/09/2025.",
+                headers: ["Fatura", "Data Vencimento", "Status"],
+                data: [["101", "20/09/2025", ""], ["102", "22/09/2025", ""], ["103", "30/10/2025", ""], ["104", "01/08/2025", ""]],
+                formula: '=SE(B2<HOJE(); "Vencida"; SE(B2=HOJE(); "Vence Hoje"; "A Vencer"))',
+                logic: (row) => { const hoje = new Date('2025-09-22T03:00:00Z'); const [d, m, a] = row[1].split('/'); const dataVenc = new Date(`${a}-${m}-${d}T03:00:00Z`); if (dataVenc < hoje) return "Vencida"; if (dataVenc.getTime() === hoje.getTime()) return "Vence Hoje"; return "A Vencer"; }
+            },
+            {
+                category: "Intermediário",
+                title: "16. Bônus por Faixa de Vendas",
+                objective: "Calcular bônus: Vendas > 50k (10%), > 30k (7%), > 15k (4%), <= 15k (sem bônus).",
+                headers: ["Vendedor", "Total de Vendas", "Valor do Bônus"],
+                data: [["Júlia", 52000, ""], ["Fernando", 31000, ""], ["Beatriz", 14500, ""], ["Rafael", 22000, ""]],
+                formula: '=SE(B2>50000; B2*10%; SE(B2>30000; B2*7%; SE(B2>15000; B2*4%; 0)))',
+                logic: (row) => { const v = parseFloat(row[1]); let b = 0; if (v > 50000) b = v * 0.10; else if (v > 30000) b = v * 0.07; else if (v > 15000) b = v * 0.04; return b.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
+            },
+            {
+                category: "Intermediário",
+                title: "17. Evitar Erro de Divisão por Zero",
+                objective: "Calcular a variação percentual de vendas, mostrando 'Não aplicável' se o mês anterior teve 0 vendas (para evitar o erro #DIV/0!).",
+                headers: ["Produto", "Vendas Mês Anterior", "Vendas Mês Atual", "Variação %"],
+                data: [["P-01", 500, 600, ""], ["P-02", 0, 100, ""], ["P-03", 200, 150, ""], ["P-04", 300, 300, ""]],
+                formula: '=SE(B2=0; "Não aplicável"; (C2-B2)/B2)',
+                logic: (row) => { const ant = parseFloat(row[1]); const atu = parseFloat(row[2]); if (ant === 0) return "Não aplicável"; return ((atu - ant) / ant).toLocaleString('pt-BR', { style: 'percent', minimumFractionDigits: 1 }); }
+            },
+            {
+                category: "Intermediário",
+                title: "18. Categoria de Produto por Código",
+                objective: 'Definir categoria pelo prefixo do código: "ELE" para Eletrônicos, "VES" para Vestuário, "ALI" para Alimentos.',
+                headers: ["Código", "Produto", "Categoria"],
+                data: [["ELE-001", "Smartphone", ""], ["VES-055", "Camisa", ""], ["ALI-012", "Arroz", ""], ["OUT-999", "Vaso", ""]],
+                formula: '=SE(ESQUERDA(A2;3)="ELE"; "Eletrônicos"; SE(ESQUERDA(A2;3)="VES"; "Vestuário"; SE(ESQUERDA(A2;3)="ALI"; "Alimentos"; "Outros")))',
+                logic: (row) => { const cod = row[0].substring(0, 3); if (cod === "ELE") return "Eletrônicos"; if (cod === "VES") return "Vestuário"; if (cod === "ALI") return "Alimentos"; return "Outros"; }
+            },
+            {
+                category: "Intermediário",
+                title: "19. Alerta de Vencimento de Contrato",
+                objective: 'Alertar "Vencendo em 30 dias" se o contrato expira nos próximos 30 dias. Hoje é 22/09/2025.',
+                headers: ["Contrato", "Data de Expiração", "Alerta"],
+                data: [["C-01", "15/10/2025", ""], ["C-02", "30/11/2025", ""], ["C-03", "25/09/2025", ""]],
+                formula: '=SE(E(B2>HOJE(); B2<=HOJE()+30); "Vencendo em 30 dias"; "OK")',
+                logic: (row) => { const hoje = new Date('2025-09-22T03:00:00Z'); const trintaDias = new Date(hoje); trintaDias.setDate(hoje.getDate() + 30); const [d, m, a] = row[1].split('/'); const dataExp = new Date(`${a}-${m}-${d}T03:00:00Z`); return (dataExp > hoje && dataExp <= trintaDias) ? "Vencendo em 30 dias" : "OK"; }
+            },
+            {
+                category: "Intermediário",
+                title: "20. Prioridade de Tarefa",
+                objective: 'Se for "Urgente" E o prazo for hoje (22/09/2025), a prioridade é "Alta". Se apenas "Urgente", "Média". Senão, "Baixa".',
+                headers: ["Tarefa", "Urgente?", "Prazo", "Prioridade"],
+                data: [["Relatório", "Sim", "22/09/2025", ""], ["E-mail", "Sim", "25/09/2025", ""], ["Arquivo", "Não", "30/09/2025", ""]],
+                formula: '=SE(E(B2="Sim"; C2=HOJE()); "Alta"; SE(B2="Sim"; "Média"; "Baixa"))',
+                logic: (row) => { const hoje = "22/09/2025"; if (row[1] === "Sim" && row[2] === hoje) return "Alta"; if (row[1] === "Sim") return "Média"; return "Baixa"; }
+            },
+            // Categoria Avançado
+            {
+                category: "Avançado",
+                title: "21. Aprovação de Crédito Complexa",
+                objective: 'Aprovar se (score > 700 E não houver restrições) OU (o cliente for antigo E o score for > 600).',
+                headers: ["Cliente", "Score", "Possui Restrição?", "Cliente Antigo?", "Decisão"],
+                data: [["A", 750, "Não", "Não", ""], ["B", 650, "Não", "Sim", ""], ["C", 800, "Sim", "Sim", ""], ["D", 620, "Não", "Não", ""]],
+                formula: '=SE(OU(E(B2>700; C2="Não"); E(D2="Sim"; B2>600)); "Aprovado"; "Requer Análise")',
+                logic: (row) => ((parseInt(row[1]) > 700 && row[2] === "Não") || (row[3] === "Sim" && parseInt(row[1]) > 600)) ? "Aprovado" : "Requer Análise"
+            },
+            {
+                category: "Avançado",
+                title: "22. Bônus de Performance Detalhado",
+                objective: 'Conceder bônus se meta > 100% E tempo de casa > 2 anos. O bônus é de 10% do salário se meta > 120%, senão 5%.',
+                headers: ["Funcionário", "Salário", "Meta Atingida (%)", "Anos Casa", "Bônus"],
+                data: [["Ana", 5000, 125, 3, ""], ["Bruno", 6000, 110, 5, ""], ["Carlos", 4500, 105, 1, ""], ["Daniela", 7000, 98, 4, ""]],
+                formula: '=SE(E(C2>100; D2>2); SE(C2>120; B2*10%; B2*5%); 0)',
+                logic: (row) => { let bonus = 0; if (parseFloat(row[2]) > 100 && parseInt(row[3]) > 2) { bonus = parseFloat(row[2]) > 120 ? parseFloat(row[1]) * 0.10 : parseFloat(row[1]) * 0.05; } return bonus.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
+            },
+            {
+                category: "Avançado",
+                title: "23. Classificação de Risco de Investimento",
+                objective: 'Risco "Alto" se volatilidade > 15% OU capitalização < 50M. "Baixo" se volatilidade < 5% E capitalização > 1B. "Médio" para os demais.',
+                headers: ["Ativo", "Volatilidade (%)", "Capitalização", "Risco"],
+                data: [["A", 20, "100M", ""], ["B", 4, "2B", ""], ["C", 10, "500M", ""], ["D", 8, "40M", ""]],
+                formula: '=SE(OU(B2>15; C2<50000000); "Alto"; SE(E(B2<5; C2>1000000000); "Baixo"; "Médio"))',
+                logic: (row) => { const vol = parseFloat(row[1]); const capStr = row[2]; let cap = 0; if (capStr.includes('B')) { cap = parseFloat(capStr.replace('B', '')) * 1000000000; } else if (capStr.includes('M')) { cap = parseFloat(capStr.replace('M', '')) * 1000000; } if (vol > 15 || cap < 50000000) return "Alto"; if (vol < 5 && cap > 1000000000) return "Baixo"; return "Médio"; }
+            },
+            {
+                category: "Avançado",
+                title: "24. Elegibilidade para Projeto Especial",
+                objective: 'Elegível se (Departamento for "TI" OU "Engenharia") E (nota de performance > 8 OU nível de idioma for "Avançado").',
+                headers: ["Candidato", "Depto", "Nota Perf.", "Idioma", "Status"],
+                data: [["Ana", "TI", 9, "Básico", ""], ["Bruno", "RH", 10, "Avançado", ""], ["Carlos", "Engenharia", 7, "Avançado", ""], ["Daniela", "TI", 7, "Intermediário", ""]],
+                formula: '=SE(E(OU(B2="TI"; B2="Engenharia"); OU(C2>8; D2="Avançado")); "Elegível"; "Não Elegível")',
+                logic: (row) => ((row[1] === "TI" || row[1] === "Engenharia") && (parseInt(row[2]) > 8 || row[3] === "Avançado")) ? "Elegível" : "Não Elegível"
+            },
+            {
+                category: "Avançado",
+                title: "25. Cálculo de Imposto de Renda Progressivo",
+                objective: 'Salário: até 2k (Isento), de 2k a 4k (7.5%), de 4k a 6k (15%), acima de 6k (22.5%).',
+                headers: ["Funcionário", "Salário", "Imposto a Pagar"],
+                data: [["Ana", 1900, ""], ["Bruno", 3500, ""], ["Carlos", 5000, ""], ["Daniela", 7500, ""]],
+                formula: '=SE(B2<=2000; 0; SE(B2<=4000; B2*7,5%; SE(B2<=6000; B2*15%; B2*22,5%)))',
+                logic: (row) => { const s = parseFloat(row[1]); let imp = 0; if (s > 6000) imp = s * 0.225; else if (s > 4000) imp = s * 0.15; else if (s > 2000) imp = s * 0.075; return imp.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }); }
+            },
+            {
+                category: "Avançado",
+                title: "26. Validação de Código de Produto",
+                objective: 'Válido se começar com "BR", terminar com um número, E tiver exatamente 8 caracteres. Senão, "Inválido".',
+                headers: ["Código", "Status"],
+                data: [["BR123456", ""], ["AR123456", ""], ["BR123XYZ", ""], ["BR-54321", ""]],
+                formula: '=SE(E(ESQUERDA(A2;2)="BR"; NÚM.CARACT(A2)=8; NÃO(ÉERROS(VALOR(DIREITA(A2;1))))); "Válido"; "Inválido")',
+                logic: (row) => (row[0].startsWith("BR") && row[0].length === 8 && !isNaN(parseInt(row[0].slice(-1)))) ? "Válido" : "Inválido"
+            },
+            {
+                category: "Avançado",
+                title: "27. Roteamento de Suporte Técnico",
+                objective: 'Nível 3 se (assunto for "Crítico" OU plano do cliente for "Enterprise"). Nível 2 se (assunto for "Técnico"). Senão, Nível 1.',
+                headers: ["Ticket", "Assunto", "Plano Cliente", "Nível Suporte"],
+                data: [["T01", "Crítico", "Basic", ""], ["T02", "Dúvida", "Enterprise", ""], ["T03", "Técnico", "Pro", ""], ["T04", "Dúvida", "Basic", ""]],
+                formula: '=SE(OU(B2="Crítico"; C2="Enterprise"); "Nível 3"; SE(B2="Técnico"; "Nível 2"; "Nível 1"))',
+                logic: (row) => { if (row[1] === "Crítico" || row[2] === "Enterprise") return "Nível 3"; if (row[1] === "Técnico") return "Nível 2"; return "Nível 1"; }
+            },
+            {
+                category: "Avançado",
+                title: "28. Status de Projeto (Datas)",
+                objective: 'Se % completo < 100 E data final já passou, status é "Atrasado". Se data final está a menos de 7 dias, "Em Risco". Senão "No Prazo". Hoje é 22/09/2025.',
+                headers: ["Projeto", "% Completo", "Data Final", "Status"],
+                data: [["Alfa", 100, "15/09/2025", ""], ["Beta", 80, "25/09/2025", ""], ["Gama", 70, "20/09/2025", ""], ["Delta", 90, "30/10/2025", ""]],
+                formula: '=SE(E(B2<100; C2<HOJE()); "Atrasado"; SE(C2<HOJE()+7; "Em Risco"; "No Prazo"))',
+                logic: (row) => { const hoje = new Date('2025-09-22T03:00:00Z'); const emSeteDias = new Date(hoje); emSeteDias.setDate(hoje.getDate() + 7); const [d, m, a] = row[2].split('/'); const dataFinal = new Date(`${a}-${m}-${d}T03:00:00Z`); if (parseFloat(row[1]) < 100 && dataFinal < hoje) return "Atrasado"; if (dataFinal < emSeteDias) return "Em Risco"; return "No Prazo"; }
+            },
+            {
+                category: "Avançado",
+                title: "29. Categoria de Cliente",
+                objective: '"Ouro" se compras totais > R$ 5k E frequência > 10. "Prata" se compras > R$ 5k OU frequência > 10. Senão "Bronze".',
+                headers: ["Cliente", "Compras Totais", "Frequência (ano)", "Categoria"],
+                data: [["A", 6000, 12, ""], ["B", 7000, 5, ""], ["C", 4000, 15, ""], ["D", 3000, 8, ""]],
+                formula: '=SE(E(B2>5000; C2>10); "Ouro"; SE(OU(B2>5000; C2>10); "Prata"; "Bronze"))',
+                logic: (row) => { const c = parseFloat(row[1]); const f = parseInt(row[2]); if (c > 5000 && f > 10) return "Ouro"; if (c > 5000 || f > 10) return "Prata"; return "Bronze"; }
+            },
+            {
+                category: "Avançado",
+                title: "30. Verificação de Inscrição Válida",
+                objective: 'Inscrição "Válida" se idade estiver entre 18 e 60 (inclusive) E o campo obrigatório não estiver vazio. Senão "Inválida".',
+                headers: ["Candidato", "Idade", "Campo Obrigatório", "Inscrição"],
+                data: [["Ana", 25, "Preenchido", ""], ["Bruno", 17, "Preenchido", ""], ["Carlos", 45, "", ""], ["Daniela", 61, "Preenchido", ""]],
+                formula: '=SE(E(B2>=18; B2<=60; C2<>""); "Válida"; "Inválida")',
+                logic: (row) => { const idade = parseInt(row[1]); return (idade >= 18 && idade <= 60 && row[2] !== "") ? "Válida" : "Inválida"; }
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const navContainer = document.getElementById('exercise-nav');
+            const contentContainer = document.getElementById('exercise-content');
+            
+            // Agrupa os exercícios por categoria para gerar a navegação
+            const categories = exercises.reduce((acc, ex, index) => {
+                if (!acc[ex.category]) {
+                    acc[ex.category] = [];
+                }
+                acc[ex.category].push({ ...ex, originalIndex: index });
+                return acc;
+            }, {});
+
+            // Gera a navegação e o conteúdo dinamicamente
+            Object.keys(categories).forEach(category => {
+                const categoryTitle = document.createElement('h3');
+                categoryTitle.className = 'nav-category text-sm uppercase tracking-wider';
+                categoryTitle.textContent = category;
+                navContainer.appendChild(categoryTitle);
+
+                categories[category].forEach(ex => {
+                    const index = ex.originalIndex;
+                    const navLink = document.createElement('a');
+                    navLink.href = '#';
+                    navLink.textContent = ex.title;
+                    navLink.className = 'nav-link block w-full text-left p-3 rounded-md text-gray-700';
+                    navLink.dataset.index = index;
+                    navContainer.appendChild(navLink);
+
+                    const contentDiv = document.createElement('div');
+                    contentDiv.id = `exercise-${index}`;
+                    contentDiv.className = 'exercise-panel hidden';
+                    
+                    let tableHTML = `
+                        <div class="card p-6">
+                            <h2 class="text-2xl font-bold mb-2 text-gray-800">${ex.title}</h2>
+                            <p class="text-gray-600 mb-6">${ex.objective}</p>
+                            
+                            <div class="overflow-x-auto mb-6">
+                                <table id="table-${index}" class="min-w-full border border-gray-200 text-sm">
+                                    <thead>
+                                        <tr>${ex.headers.map(h => `<th class="p-3 border-b text-left font-semibold text-gray-600">${h}</th>`).join('')}</tr>
+                                    </thead>
+                                    <tbody>
+                                        ${ex.data.map(row => `<tr>${row.map((cell, cellIndex) => `<td class="p-3 border-b border-gray-200 ${!isNaN(parseFloat(cell)) && cellIndex > 0 ? 'text-center' : ''}">${cell}</td>`).join('')}</tr>`).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="mb-6">
+                                <p class="font-semibold text-gray-700 mb-2">Fórmula do Excel (para a primeira linha de dados):</p>
+                                <div class="formula-card p-4 rounded-md text-blue-800 text-sm whitespace-pre-wrap">${ex.formula}</div>
+                            </div>
+
+                            <div class="flex items-center space-x-4">
+                                <button class="btn-run btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md" data-index="${index}">
+                                    Ver Resultado
+                                </button>
+                                <button class="btn-reset btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-md" data-index="${index}">
+                                    Limpar
+                                </button>
+                            </div>
+                        </div>`;
+
+                    contentDiv.innerHTML = tableHTML;
+                    contentContainer.appendChild(contentDiv);
+                });
+            });
+
+            // Função para exibir o exercício selecionado
+            function showExercise(index) {
+                document.querySelectorAll('.exercise-panel').forEach(panel => panel.classList.add('hidden'));
+                document.getElementById(`exercise-${index}`).classList.remove('hidden');
+
+                document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                document.querySelector(`.nav-link[data-index='${index}']`).classList.add('active');
+            }
+            
+            // Listener para cliques na navegação
+            navContainer.addEventListener('click', (e) => {
+                if(e.target.matches('.nav-link')) {
+                    e.preventDefault();
+                    showExercise(e.target.dataset.index);
+                }
+            });
+
+            // Listener para cliques nos botões de ação
+            contentContainer.addEventListener('click', (e) => {
+                if(e.target.matches('.btn-run')) {
+                    const index = e.target.dataset.index;
+                    const exercise = exercises[index];
+                    const table = document.getElementById(`table-${index}`).getElementsByTagName('tbody')[0];
+                    for(let i = 0; i < table.rows.length; i++) {
+                        const originalRowData = exercise.data[i];
+                        const result = exercise.logic(originalRowData);
+                        table.rows[i].cells[exercise.headers.length - 1].textContent = result;
+                    }
+                }
+                
+                if(e.target.matches('.btn-reset')) {
+                    const index = e.target.dataset.index;
+                    const exercise = exercises[index];
+                    const table = document.getElementById(`table-${index}`).getElementsByTagName('tbody')[0];
+                    for(let i = 0; i < table.rows.length; i++) {
+                        table.rows[i].cells[exercise.headers.length - 1].textContent = "";
+                    }
+                }
+            });
+
+            // Exibe o primeiro exercício por padrão
+            showExercise(0);
+        });
+    </script>
+</body>
+</html>
