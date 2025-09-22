@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratório Interativo: Funções SOMASE e CONT.SE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #2c3e50;
+        }
+        .nav-category {
+            font-weight: 700;
+            color: #4a5568;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            padding-left: 0.75rem;
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-left: 3px solid transparent;
+        }
+        .nav-link.active {
+            border-left-color: #2563eb;
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            font-weight: 600;
+        }
+        .nav-link:hover {
+            background-color: #f0f2f5;
+            border-left-color: #93c5fd;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .btn {
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .formula-card {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        table th {
+            background-color: #f3f4f6;
+        }
+        .help-section {
+            transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .help-section.visible {
+            max-height: 500px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
+        
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-gray-800">Laboratório: Funções SOMASE e CONT.SE</h1>
+            <p class="mt-2 text-lg text-gray-600">Pratique somas e contagens com critérios específicos.</p>
+        </header>
+
+        <div class="md:grid md:grid-cols-12 md:gap-8">
+            <aside class="md:col-span-4 lg:col-span-3 mb-8 md:mb-0">
+                <nav id="exercise-nav" class="bg-white rounded-lg shadow-sm p-4 sticky top-8 max-h-[90vh] overflow-y-auto"></nav>
+            </aside>
+            <main id="exercise-content" class="md:col-span-8 lg:col-span-9"></main>
+        </div>
+
+    </div>
+
+    <script>
+        const exercises = [
+            // Categoria CONT.SE
+            {
+                category: "Função CONT.SE",
+                title: "1. Contar Produtos por Categoria",
+                objective: "Contar quantos produtos pertencem à categoria 'Frutas'. O resultado deve ser a contagem total.",
+                headers: ["Produto", "Categoria"],
+                data: [["Maçã", "Frutas"], ["Alface", "Verduras"], ["Banana", "Frutas"], ["Cenoura", "Legumes"], ["Laranja", "Frutas"]],
+                resultHeaders: ["Contagem de Frutas"],
+                formula: '=CONT.SE(B2:B6; "Frutas")',
+                logic: (data) => {
+                    const count = data.filter(row => row[1] === 'Frutas').length;
+                    return [[count]];
+                }
+            },
+            {
+                category: "Função CONT.SE",
+                title: "2. Contar Vendas Acima da Meta",
+                objective: "Contar quantos vendedores tiveram vendas acima de R$ 10.000.",
+                headers: ["Vendedor", "Vendas"],
+                data: [["Ana", 12000], ["Bruno", 8500], ["Carlos", 15000], ["Daniela", 9900], ["Eduardo", 10000]],
+                resultHeaders: ["Vendedores Acima da Meta"],
+                formula: '=CONT.SE(B2:B6; ">10000")',
+                logic: (data) => {
+                    const count = data.filter(row => parseFloat(row[1]) > 10000).length;
+                    return [[count]];
+                }
+            },
+            {
+                category: "Função CONT.SE",
+                title: "3. Contar Alunos Aprovados",
+                objective: "Contar o número total de alunos com a situação 'Aprovado'.",
+                headers: ["Aluno", "Situação"],
+                data: [["Ana", "Aprovado"], ["Bruno", "Reprovado"], ["Carlos", "Aprovado"], ["Daniela", "Aprovado"], ["Eduardo", "Reprovado"]],
+                resultHeaders: ["Total de Aprovados"],
+                formula: '=CONT.SE(B2:B6; "Aprovado")',
+                logic: (data) => {
+                    const count = data.filter(row => row[1] === 'Aprovado').length;
+                    return [[count]];
+                }
+            },
+            // Categoria SOMASE
+            {
+                category: "Função SOMASE",
+                title: "4. Somar Vendas por Vendedor",
+                objective: "Somar o valor total de vendas realizadas pela vendedora 'Ana'.",
+                headers: ["Vendedor", "Valor da Venda"],
+                data: [["Ana", 500], ["Bruno", 800], ["Ana", 300], ["Carlos", 1200], ["Ana", 450]],
+                resultHeaders: ["Total de Vendas (Ana)"],
+                formula: '=SOMASE(A2:A6; "Ana"; B2:B6)',
+                logic: (data) => {
+                    const total = data.reduce((sum, row) => {
+                        if (row[0] === 'Ana') {
+                            return sum + parseFloat(row[1]);
+                        }
+                        return sum;
+                    }, 0);
+                    return [[total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })]];
+                }
+            },
+            {
+                category: "Função SOMASE",
+                title: "5. Somar Despesas por Departamento",
+                objective: "Calcular o total de despesas do departamento de 'Marketing'.",
+                headers: ["Departamento", "Despesa"],
+                data: [["TI", 1500], ["Marketing", 800], ["Vendas", 2200], ["Marketing", 1200], ["TI", 950]],
+                resultHeaders: ["Total de Despesas (Marketing)"],
+                formula: '=SOMASE(A2:A6; "Marketing"; B2:B6)',
+                logic: (data) => {
+                    const total = data.reduce((sum, row) => {
+                        if (row[0] === 'Marketing') {
+                            return sum + parseFloat(row[1]);
+                        }
+                        return sum;
+                    }, 0);
+                    return [[total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })]];
+                }
+            },
+            {
+                category: "Função SOMASE",
+                title: "6. Somar Estoque de um Produto",
+                objective: "Somar a quantidade total de 'Maçãs' em todos os estoques.",
+                headers: ["Produto", "Quantidade"],
+                data: [["Maçã", 100], ["Banana", 150], ["Laranja", 120], ["Maçã", 80], ["Banana", 200]],
+                resultHeaders: ["Estoque Total de Maçãs"],
+                formula: '=SOMASE(A2:A6; "Maçã"; B2:B6)',
+                logic: (data) => {
+                    const total = data.reduce((sum, row) => {
+                        if (row[0] === 'Maçã') {
+                            return sum + parseInt(row[1]);
+                        }
+                        return sum;
+                    }, 0);
+                    return [[total]];
+                }
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const navContainer = document.getElementById('exercise-nav');
+            const contentContainer = document.getElementById('exercise-content');
+            
+            const categories = exercises.reduce((acc, ex, index) => {
+                if (!acc[ex.category]) acc[ex.category] = [];
+                acc[ex.category].push({ ...ex, originalIndex: index });
+                return acc;
+            }, {});
+
+            Object.keys(categories).forEach(category => {
+                const categoryTitle = document.createElement('h3');
+                categoryTitle.className = 'nav-category text-sm uppercase tracking-wider';
+                categoryTitle.textContent = category;
+                navContainer.appendChild(categoryTitle);
+
+                categories[category].forEach(ex => {
+                    const index = ex.originalIndex;
+                    const navLink = document.createElement('a');
+                    navLink.href = '#';
+                    navLink.textContent = ex.title;
+                    navLink.className = 'nav-link block w-full text-left p-3 rounded-md text-gray-700';
+                    navLink.dataset.index = index;
+                    navContainer.appendChild(navLink);
+
+                    const contentDiv = document.createElement('div');
+                    contentDiv.id = `exercise-${index}`;
+                    contentDiv.className = 'exercise-panel hidden';
+                    
+                    contentDiv.innerHTML = `
+                        <div class="card p-6">
+                            <h2 class="text-2xl font-bold mb-2 text-gray-800">${ex.title}</h2>
+                            <p class="text-gray-600 mb-6">${ex.objective}</p>
+                            
+                            <h3 class="font-semibold text-gray-700 mb-2">Dados de Exemplo:</h3>
+                            <div class="overflow-x-auto mb-6">
+                                <table class="min-w-full border border-gray-200 text-sm">
+                                    <thead>
+                                        <tr>${ex.headers.map(h => `<th class="p-3 border-b border-r border-gray-200 text-left font-semibold text-gray-600">${h}</th>`).join('')}</tr>
+                                    </thead>
+                                    <tbody>
+                                        ${ex.data.map(row => `<tr>${row.map(cell => `<td class="p-3 border-b border-r border-gray-200">${cell}</td>`).join('')}</tr>`).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <button class="btn-help btn hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md mb-4" data-index="${index}">
+                                Mostrar Ajuda e Resultado
+                            </button>
+
+                            <div id="help-${index}" class="help-section">
+                                <div class="mb-6">
+                                    <p class="font-semibold text-gray-700 mb-2">Fórmula do Excel:</p>
+                                    <div class="formula-card p-4 rounded-md text-blue-800 text-sm whitespace-pre-wrap">${ex.formula}</div>
+                                </div>
+                                <h3 class="font-semibold text-gray-700 mb-2">Resultado Esperado:</h3>
+                                <div class="overflow-x-auto mb-6">
+                                    <table id="table-result-${index}" class="min-w-full border border-gray-200 text-sm">
+                                        <thead>
+                                            <tr>${ex.resultHeaders.map(h => `<th class="p-3 border-b border-r border-gray-200 text-left font-semibold text-gray-600">${h}</th>`).join('')}</tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>`;
+                    contentContainer.appendChild(contentDiv);
+                });
+            });
+
+            function showExercise(index) {
+                document.querySelectorAll('.exercise-panel').forEach(panel => panel.classList.add('hidden'));
+                document.getElementById(`exercise-${index}`).classList.remove('hidden');
+                document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                document.querySelector(`.nav-link[data-index='${index}']`).classList.add('active');
+            }
+            
+            contentContainer.addEventListener('click', (e) => {
+                if(e.target.matches('.btn-help')) {
+                    const index = e.target.dataset.index;
+                    const helpSection = document.getElementById(`help-${index}`);
+                    const isVisible = helpSection.classList.toggle('visible');
+                    e.target.textContent = isVisible ? 'Esconder Ajuda' : 'Mostrar Ajuda e Resultado';
+                    
+                    if(isVisible) {
+                        const exercise = exercises[index];
+                        const resultTableBody = document.querySelector(`#table-result-${index} tbody`);
+                        const resultData = exercise.logic(exercise.data);
+                        resultTableBody.innerHTML = resultData.map(row => `<tr>${row.map(cell => `<td class="p-3 border-b border-r border-gray-200">${cell}</td>`).join('')}</tr>`).join('');
+                    }
+                }
+            });
+
+            showExercise(0);
+        });
+    </script>
+</body>
+</html>
