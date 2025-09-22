@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratório Interativo: Função PROCV</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #2c3e50;
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-left: 3px solid transparent;
+        }
+        .nav-link.active {
+            border-left-color: #2563eb;
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            font-weight: 600;
+        }
+        .nav-link:hover {
+            background-color: #f0f2f5;
+            border-left-color: #93c5fd;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .btn {
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .btn:hover {
+            transform: translateY(-1px);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+        .formula-card {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        table th {
+            background-color: #f3f4f6;
+        }
+        .help-section {
+            transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .help-section.visible {
+            max-height: 500px;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
+        
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-gray-800">Laboratório Interativo da Função PROCV</h1>
+            <p class="mt-2 text-lg text-gray-600">Aprenda a buscar dados em tabelas de forma eficiente.</p>
+        </header>
+
+        <div class="md:grid md:grid-cols-12 md:gap-8">
+            <aside class="md:col-span-4 lg:col-span-3 mb-8 md:mb-0">
+                <nav id="exercise-nav" class="bg-white rounded-lg shadow-sm p-4 sticky top-8 max-h-[90vh] overflow-y-auto"></nav>
+            </aside>
+            <main id="exercise-content" class="md:col-span-8 lg:col-span-9"></main>
+        </div>
+    </div>
+
+    <script>
+        const exercises = [
+            {
+                title: "1. Buscar Preço do Produto",
+                objective: "Usar o código do produto para encontrar seu preço na tabela de referência.",
+                headers: ["Código a Buscar", "Preço Encontrado"],
+                data: [["A-01", ""], ["C-03", ""], ["B-02", ""]],
+                lookupHeaders: ["Código", "Produto", "Preço"],
+                lookupData: [["A-01", "Caneta", 2.50], ["B-02", "Lápis", 1.00], ["C-03", "Borracha", 1.75]],
+                formula: '=PROCV(A2; $E$2:$G$4; 3; FALSO)',
+                logic: (row, lookupData) => {
+                    const lookupValue = row[0];
+                    const found = lookupData.find(lookupRow => lookupRow[0] === lookupValue);
+                    return found ? found[2].toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }) : '#N/D';
+                }
+            },
+            {
+                title: "2. Encontrar E-mail do Funcionário",
+                objective: "A partir do ID do funcionário, encontrar seu e-mail na tabela de cadastro.",
+                headers: ["ID do Funcionário", "E-mail"],
+                data: [[101, ""], [103, ""], [105, ""]],
+                lookupHeaders: ["ID", "Nome", "E-mail"],
+                lookupData: [[101, "Ana", "ana@empresa.com"], [102, "Bruno", "bruno@empresa.com"], [103, "Carlos", "carlos@empresa.com"]],
+                formula: '=PROCV(A2; $E$2:$G$4; 3; FALSO)',
+                logic: (row, lookupData) => {
+                    const lookupValue = row[0];
+                    const found = lookupData.find(lookupRow => lookupRow[0] === lookupValue);
+                    return found ? found[2] : '#N/D';
+                }
+            },
+            {
+                title: "3. Obter Capital do Estado",
+                objective: "Usar a sigla do estado para encontrar sua respectiva capital.",
+                headers: ["Estado (Sigla)", "Capital"],
+                data: [["SP", ""], ["BA", ""], ["MG", ""]],
+                lookupHeaders: ["Sigla", "Capital"],
+                lookupData: [["MG", "Belo Horizonte"], ["SP", "São Paulo"], ["RJ", "Rio de Janeiro"], ["BA", "Salvador"]],
+                formula: '=PROCV(A2; $D$2:$E$5; 2; FALSO)',
+                logic: (row, lookupData) => {
+                    const lookupValue = row[0];
+                    const found = lookupData.find(lookupRow => lookupRow[0] === lookupValue);
+                    return found ? found[1] : '#N/D';
+                }
+            },
+            {
+                title: "4. Classificar Desempenho (PROCV Aproximado)",
+                objective: "A partir da nota, classificar o desempenho usando uma correspondência aproximada.",
+                headers: ["Nota", "Desempenho"],
+                data: [[75, ""], [45, ""], [92, ""], [69, ""]],
+                lookupHeaders: ["Nota Mínima", "Classificação"],
+                lookupData: [[0, "Insuficiente"], [50, "Regular"], [70, "Bom"], [90, "Excelente"]],
+                formula: '=PROCV(A2; $D$2:$E$5; 2; VERDADEIRO)',
+                logic: (row, lookupData) => {
+                    const score = row[0];
+                    let classification = '#N/D';
+                    for (let i = lookupData.length - 1; i >= 0; i--) {
+                        if (score >= lookupData[i][0]) {
+                            classification = lookupData[i][1];
+                            break;
+                        }
+                    }
+                    return classification;
+                }
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const navContainer = document.getElementById('exercise-nav');
+            const contentContainer = document.getElementById('exercise-content');
+
+            exercises.forEach((ex, index) => {
+                const navLink = document.createElement('a');
+                navLink.href = '#';
+                navLink.textContent = ex.title;
+                navLink.className = 'nav-link block w-full text-left p-3 rounded-md text-gray-700';
+                navLink.dataset.index = index;
+                navContainer.appendChild(navLink);
+
+                const contentDiv = document.createElement('div');
+                contentDiv.id = `exercise-${index}`;
+                contentDiv.className = 'exercise-panel hidden';
+
+                contentDiv.innerHTML = `
+                    <div class="card p-6">
+                        <h2 class="text-2xl font-bold mb-2 text-gray-800">${ex.title}</h2>
+                        <p class="text-gray-600 mb-6">${ex.objective}</p>
+                        
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-2">Tabela Principal:</h3>
+                                <div class="overflow-x-auto">
+                                    <table id="table-${index}" class="min-w-full border border-gray-200 text-sm">
+                                        <thead><tr>${ex.headers.map(h => `<th class="p-3 border-b border-r text-left font-semibold">${h}</th>`).join('')}</tr></thead>
+                                        <tbody>${ex.data.map(row => `<tr>${row.map(cell => `<td class="p-3 border-b border-r">${cell}</td>`).join('')}</tr>`).join('')}</tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-700 mb-2">Tabela de Referência (Matriz):</h3>
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full border border-gray-200 text-sm">
+                                        <thead><tr>${ex.lookupHeaders.map(h => `<th class="p-3 border-b border-r text-left font-semibold">${h}</th>`).join('')}</tr></thead>
+                                        <tbody>${ex.lookupData.map(row => `<tr>${row.map(cell => `<td class="p-3 border-b border-r">${cell}</td>`).join('')}</tr>`).join('')}</tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6">
+                             <button class="btn-help btn hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md mb-4" data-index="${index}">
+                                Mostrar Ajuda e Resultado
+                            </button>
+
+                            <div id="help-${index}" class="help-section">
+                                <div class="mb-6">
+                                    <p class="font-semibold text-gray-700 mb-2">Fórmula do Excel (para a primeira linha):</p>
+                                    <div class="formula-card p-4 rounded-md text-blue-800 text-sm whitespace-pre-wrap">${ex.formula}</div>
+                                </div>
+                                 <button class="btn-reset btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-md" data-index="${index}">
+                                    Limpar
+                                </button>
+                            </div>
+                        </div>
+                    </div>`;
+                contentContainer.appendChild(contentDiv);
+            });
+
+            function showExercise(index) {
+                document.querySelectorAll('.exercise-panel').forEach(panel => panel.classList.add('hidden'));
+                document.getElementById(`exercise-${index}`).classList.remove('hidden');
+                document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                document.querySelector(`.nav-link[data-index='${index}']`).classList.add('active');
+            }
+
+            contentContainer.addEventListener('click', (e) => {
+                const index = e.target.dataset.index;
+                if (!index) return;
+                
+                if (e.target.matches('.btn-help')) {
+                    const helpSection = document.getElementById(`help-${index}`);
+                    const isVisible = helpSection.classList.toggle('visible');
+                    e.target.textContent = isVisible ? 'Esconder Ajuda' : 'Mostrar Ajuda e Resultado';
+                    
+                    if (isVisible) {
+                        const exercise = exercises[index];
+                        const table = document.getElementById(`table-${index}`).getElementsByTagName('tbody')[0];
+                        for(let i = 0; i < table.rows.length; i++) {
+                            const result = exercise.logic(exercise.data[i], exercise.lookupData);
+                            table.rows[i].cells[1].textContent = result;
+                        }
+                    }
+                }
+
+                if (e.target.matches('.btn-reset')) {
+                    const table = document.getElementById(`table-${index}`).getElementsByTagName('tbody')[0];
+                     for(let i = 0; i < table.rows.length; i++) {
+                        table.rows[i].cells[1].textContent = "";
+                    }
+                }
+            });
+
+            navContainer.addEventListener('click', (e) => {
+                if(e.target.matches('.nav-link')) {
+                    e.preventDefault();
+                    showExercise(e.target.dataset.index);
+                }
+            });
+
+            showExercise(0);
+        });
+    </script>
+</body>
+</html>
