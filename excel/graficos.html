@@ -37,18 +37,35 @@
         .copy-button {
             transition: background-color 0.3s ease;
         }
+        /* Estilos adicionados para os novos títulos */
+        .purpose-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1e3a8a; /* Azul escuro */
+            margin-bottom: 0.5rem;
+        }
+        .storytelling-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #5b21b6; /* Roxo */
+            margin-bottom: 0.5rem;
+        }
+        .task-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1f2937; /* Cinza escuro */
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
     <div class="container mx-auto p-4 sm:p-6 md:p-8">
-        <!-- Cabeçalho -->
         <header class="text-center mb-8">
             <h1 class="text-4xl font-bold text-gray-900">Gerador de Exercícios de Gráficos</h1>
             <p class="text-lg text-gray-600 mt-2">Pratique suas habilidades no Excel com estes desafios</p>
         </header>
 
-        <!-- Navegação por Categorias -->
         <nav class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8" id="category-nav">
             <button data-category="coluna" class="nav-button active bg-blue-600 text-white py-2 px-5 rounded-lg font-semibold hover:bg-blue-700">
                 Colunas
@@ -74,14 +91,21 @@
         </nav>
 
         <main>
-            <!-- Categoria: Gráficos de Coluna -->
             <section id="coluna" class="category-content active">
                 <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Básico -->
                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
                         <h3 class="text-2xl font-bold mb-3">Vendas Mensais</h3>
+                        
+                        <h5 class="purpose-title">Propósito do Gráfico:</h5>
+                        <p class="mb-3 text-gray-600">Comparar valores absolutos entre diferentes categorias discretas. É o gráfico ideal para responder "Quem vendeu mais?" ou "Qual foi o mês mais forte?".</p>
+                        
+                        <h5 class="storytelling-title">Contexto (Storytelling):</h5>
+                        <p class="mb-4 text-gray-600">Você é analista de vendas e seu gerente pediu um resumo visual do primeiro semestre. Ele precisa ver rapidamente quais meses atingiram a meta e quais precisam de mais atenção no próximo ano.</p>
+
+                        <h5 class="task-title">Sua Tarefa:</h5>
                         <p class="mb-4 text-gray-600">Crie um gráfico de colunas simples para visualizar o total de vendas de cada mês.</p>
+                        
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
                         <div class="data-table mb-4">Mês;Vendas (R$)
 Jan;5.200
@@ -95,11 +119,19 @@ Jun;11.500</div>
                             <span>Copiar Dados</span>
                         </button>
                     </div>
-                    <!-- Avançado -->
                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-red-100 text-red-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Avançado</span>
                         <h3 class="text-2xl font-bold mb-3">Vendas Trimestrais por Produto</h3>
+                        
+                        <h5 class="purpose-title">Propósito do Gráfico:</h5>
+                        <p class="mb-3 text-gray-600">Comparar múltiplas séries de dados (produtos) dentro das mesmas categorias (trimestres). Permite ver o desempenho relativo de cada produto lado a lado.</p>
+                        
+                        <h5 class="storytelling-title">Contexto (Storytelling):</h5>
+                        <p class="mb-4 text-gray-600">Você é gerente de produto e precisa decidir quais produtos receberão mais investimento em marketing. Este gráfico mostrará qual produto foi o "carro-chefe" em cada trimestre e qual está perdendo força.</p>
+                        
+                        <h5 class="task-title">Sua Tarefa:</h5>
                         <p class="mb-4 text-gray-600">Crie um gráfico de colunas agrupadas para comparar o desempenho de vendas de diferentes produtos ao longo dos trimestres.</p>
+
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
                         <div class="data-table mb-4">Produto;T1;T2;T3;T4
 Produto A;15000;17000;16500;19000
@@ -113,14 +145,21 @@ Produto C;18000;16000;18500;17000</div>
                 </div>
             </section>
 
-            <!-- Categoria: Gráficos de Barra -->
             <section id="barra" class="category-content">
                 <div class="grid md:grid-cols-2 gap-8">
-                     <!-- Básico -->
-                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
                         <h3 class="text-2xl font-bold mb-3">População por Cidade</h3>
+                        
+                        <h5 class="purpose-title">Propósito do Gráfico:</h5>
+                        <p class="mb-3 text-gray-600">Igual ao gráfico de colunas (comparar categorias), mas usado quando os rótulos das categorias são muito longos, pois facilita a leitura na vertical.</p>
+                        
+                        <h5 class="storytelling-title">Contexto (Storytelling):</h5>
+                        <p class="mb-4 text-gray-600">Você está criando um relatório para uma empresa de logística decidir onde abrir novos centros de distribuição. Mostrar as cidades mais populosas é crucial, e os nomes são longos demais para um gráfico de colunas.</p>
+                        
+                        <h5 class="task-title">Sua Tarefa:</h5>
                         <p class="mb-4 text-gray-600">Use um gráfico de barras para comparar a população de diferentes cidades. Ideal para rótulos longos.</p>
+
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
                         <div class="data-table mb-4">Cidade;População
 São Paulo;12.330.000
@@ -133,11 +172,19 @@ Fortaleza;2.687.000</div>
                             <span>Copiar Dados</span>
                         </button>
                     </div>
-                    <!-- Avançado -->
                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-red-100 text-red-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Avançado</span>
                         <h3 class="text-2xl font-bold mb-3">Pesquisa de Satisfação</h3>
+                        
+                        <h5 class="purpose-title">Propósito do Gráfico:</h5>
+                        <p class="mb-3 text-gray-600">Mostrar a composição percentual (a "parte de um todo") de diferentes categorias. Responde "Qual a proporção de satisfeitos vs. insatisfeitos em cada time?".</p>
+                        
+                        <h5 class="storytelling-title">Contexto (Storytelling):</h5>
+                        <p class="mb-4 text-gray-600">O time de RH precisa comparar a satisfação entre departamentos. Não importa se Vendas tem mais gente que Marketing; o que importa é a *proporção* de respostas "Ótimo" ou "Ruim" em cada um.</p>
+                        
+                        <h5 class="task-title">Sua Tarefa:</h5>
                         <p class="mb-4 text-gray-600">Crie um gráfico de barras 100% empilhadas para mostrar a proporção de cada nível de satisfação por departamento.</p>
+                        
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
                         <div class="data-table mb-4">Departamento;Ótimo;Bom;Regular;Ruim
 Vendas;50;80;30;10
@@ -151,14 +198,21 @@ Suporte;70;90;20;8</div>
                 </div>
             </section>
 
-            <!-- Categoria: Gráficos de Pizza -->
             <section id="pizza" class="category-content">
                 <div class="grid md:grid-cols-2 gap-8">
-                     <!-- Básico -->
-                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
                         <h3 class="text-2xl font-bold mb-3">Distribuição de Despesas</h3>
+                        
+                        <h5 class="purpose-title">Propósito do Gráfico:</h5>
+                        <p class="mb-3 text-gray-600">Mostrar como um valor total (100%) é dividido em partes componentes. Ideal para poucas categorias (máx. 5-6), para responder "Para onde vai a maior parte do dinheiro?".</p>
+                        
+                        <h5 class="storytelling-title">Contexto (Storytelling):</h5>
+                        <p class="mb-4 text-gray-600">Você está montando sua apresentação de orçamento pessoal. Este gráfico mostrará de forma impactante que "Moradia" representa a maior "fatia" dos seus gastos mensais.</p>
+
+                        <h5 class="task-title">Sua Tarefa:</h5>
                         <p class="mb-4 text-gray-600">Crie um gráfico de pizza para mostrar como as despesas mensais são distribuídas entre diferentes categorias.</p>
+
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
                         <div class="data-table mb-4">Categoria;Valor (R$)
 Moradia;1500
@@ -171,11 +225,19 @@ Outros;250</div>
                             <span>Copiar Dados</span>
                         </button>
                     </div>
-                    <!-- Avançado -->
                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-red-100 text-red-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Avançado</span>
                         <h3 class="text-2xl font-bold mb-3">Market Share (Gráfico de Rosca)</h3>
+                        
+                        <h5 class="purpose-title">Propósito do Gráfico:</h5>
+                        <p class="mb-3 text-gray-600">Funcionalmente idêntico ao de Pizza (mostrar partes de um todo), mas o "buraco" central (Rosca) permite adicionar informações extras, como o valor total ou um ícone, e tem um visual mais moderno.</p>
+                        
+                        <h5 class="storytelling-title">Contexto (Storytelling):</h5>
+                        <p class="mb-4 text-gray-600">Em uma reunião de diretoria, você precisa apresentar a participação de mercado (market share). O gráfico de rosca mostrará a fatia da "Marca A" e, no centro, você pode destacar o valor total do mercado.</p>
+
+                        <h5 class="task-title">Sua Tarefa:</h5>
                         <p class="mb-4 text-gray-600">Crie um gráfico de rosca para visualizar a participação de mercado, que permite inserir um total ou um ícone no centro.</p>
+
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
                         <div class="data-table mb-4">Marca;Participação (%)
 Marca A;45
@@ -190,14 +252,21 @@ Outras;13</div>
                 </div>
             </section>
 
-            <!-- Categoria: Gráficos de Linha -->
             <section id="linha" class="category-content">
                 <div class="grid md:grid-cols-2 gap-8">
-                     <!-- Básico -->
-                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
                         <h3 class="text-2xl font-bold mb-3">Variação da Temperatura</h3>
+                        
+                        <h5 class="purpose-title">Propósito do Gráfico:</h5>
+                        <p class="mb-3 text-gray-600">Visualizar tendências e mudanças de dados contínuos ao longo do tempo (ou outra sequência ordenada, como horas, meses ou anos).</p>
+                        
+                        <h5 class="storytelling-title">Contexto (Storytelling):</h5>
+                        <p class="mb-4 text-gray-600">Como meteorologista, você precisa mostrar a flutuação da temperatura. O gráfico de linha conectará os pontos, mostrando claramente a "subida" até o pico das 15h e a "queda" à noite.</p>
+
+                        <h5 class="task-title">Sua Tarefa:</h5>
                         <p class="mb-4 text-gray-600">Use um gráfico de linhas para mostrar a evolução da temperatura ao longo de um dia.</p>
+
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
                         <div class="data-table mb-4">Hora;Temperatura (°C)
 06:00;18
@@ -211,11 +280,19 @@ Outras;13</div>
                             <span>Copiar Dados</span>
                         </button>
                     </div>
-                    <!-- Avançado -->
                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-red-100 text-red-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Avançado</span>
                         <h3 class="text-2xl font-bold mb-3">Pesquisa de Intenção de Votos</h3>
+                        
+                        <h5 class="purpose-title">Propósito do Gráfico:</h5>
+                        <p class="mb-3 text-gray-600">Comparar a tendência de múltiplas séries de dados ao longo do tempo. É excelente para identificar cruzamentos, subidas e descidas de diferentes concorrentes.</p>
+                        
+                        <h5 class="storytelling-title">Contexto (Storytelling):</h5>
+                        <p class="mb-4 text-gray-600">Você é um analista político em um telejornal. Este gráfico é a "corrida eleitoral". Ele mostrará visualmente que o Candidato A estava atrás, mas cruzou a linha do Candidato B em Setembro.</p>
+
+                        <h5 class="task-title">Sua Tarefa:</h5>
                         <p class="mb-4 text-gray-600">Crie um gráfico de linhas para comparar a evolução da intenção de votos de diferentes candidatos ao longo do tempo.</p>
+
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
                         <div class="data-table mb-4">Mês;Candidato A (%);Candidato B (%);Candidato C (%)
 Julho;35;40;15
@@ -230,14 +307,21 @@ Outubro;40;39;11</div>
                 </div>
             </section>
             
-            <!-- Categoria: Gráficos de Dispersão -->
             <section id="dispersao" class="category-content">
                 <div class="grid md:grid-cols-2 gap-8">
-                     <!-- Básico -->
-                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
                         <h3 class="text-2xl font-bold mb-3">Investimento vs. Retorno</h3>
+                        
+                        <h5 class="purpose-title">Propósito do Gráfico:</h5>
+                        <p class="mb-3 text-gray-600">Identificar a relação (correlação) entre duas variáveis numéricas. Ele responde: "Quando X aumenta, o que acontece com Y?".</p>
+                        
+                        <h5 class="storytelling-title">Contexto (Storytelling):</h5>
+                        <p class="mb-4 text-gray-600">O diretor de marketing perguntou: "Nosso investimento em anúncios está realmente trazendo retorno?" Seu gráfico de dispersão mostrará que, sim, quanto mais se investe (eixo X), maior tende a ser o retorno (eixo Y).</p>
+
+                        <h5 class="task-title">Sua Tarefa:</h5>
                         <p class="mb-4 text-gray-600">Crie um gráfico de dispersão (XY) para analisar a correlação entre o investimento em marketing e o retorno obtido.</p>
+
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
                         <div class="data-table mb-4">Investimento (R$);Retorno (R$)
 1000;5000
@@ -251,11 +335,19 @@ Outubro;40;39;11</div>
                             <span>Copiar Dados</span>
                         </button>
                     </div>
-                    <!-- Avançado -->
                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-red-100 text-red-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Avançado</span>
                         <h3 class="text-2xl font-bold mb-3">Análise de Produtos (Bolhas)</h3>
+                        
+                        <h5 class="purpose-title">Propósito do Gráfico:</h5>
+                        <p class="mb-3 text-gray-600">Mostrar a relação entre três variáveis. Duas são usadas nos eixos (X, Y) e a terceira é representada pelo *tamanho* da bolha. É um gráfico de dispersão com uma dimensão extra.</p>
+                        
+                        <h5 class="storytelling-title">Contexto (Storytelling):</h5>
+                        <p class="mb-4 text-gray-600">Precisamos decidir quais produtos focar. Este gráfico mostrará tudo: o Produto C é barato (X baixo), mas tem satisfação baixa (Y baixo), porém vende muito (bolha grande). Já o Produto D é caro (X alto), tem alta satisfação (Y alto) e vende bem (bolha média).</p>
+
+                        <h5 class="task-title">Sua Tarefa:</h5>
                         <p class="mb-4 text-gray-600">Crie um gráfico de bolhas para comparar produtos. Use Preço (X), Satisfação (Y) e Volume de Vendas (tamanho da bolha).</p>
+
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
                         <div class="data-table mb-4">Produto;Preço (R$);Satisfação (0-10);Vendas (Unidades)
 Produto A;50;8,5;1200
@@ -271,14 +363,21 @@ Produto E;65;8,0;1800</div>
                 </div>
             </section>
             
-            <!-- Categoria: Gráficos de Cascata -->
             <section id="cascata" class="category-content">
                 <div class="grid md:grid-cols-2 gap-8">
-                     <!-- Básico -->
-                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
                         <h3 class="text-2xl font-bold mb-3">Fluxo de Caixa Mensal</h3>
-                        <p class="mb-4 text-gray-600">Crie um gráfico de cascata para visualizar como o saldo inicial é afetado por receitas e despesas, resultando no saldo final.</p>
+                        
+                        <h5 class="purpose-title">Propósito do Gráfico:</h5>
+                        <p class="mb-3 text-gray-600">Mostrar o efeito cumulativo de valores positivos (ganhos) e negativos (perdas) sobre um valor inicial, resultando em um valor final. É perfeito para DRE ou fluxo de caixa.</p>
+                        
+                        <h5 class="storytelling-title">Contexto (Storytelling):</h5>
+                        <p class="mb-4 text-gray-600">O CEO quer entender o caixa do mês. O gráfico de cascata mostrará a "ponte" entre os 5.000 que tínhamos no início, o que entrou (receitas) e o que saiu (custos), chegando ao saldo final.</p>
+
+                        <h5 class="task-title">Sua Tarefa:</h5>
+                        <p class="mb-4 text-gray-600">Crie um gráfico de cascata para visualizar como o saldo inicial é afetado por receitas e despesas, resultando no saldo final. (Dica: Marque "Saldo Inicial" e "Saldo Final" como "Definir como total").</p>
+
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
                         <div class="data-table mb-4">Descrição;Valor (R$)
 Saldo Inicial;5000
@@ -292,11 +391,19 @@ Saldo Final;</div>
                             <span>Copiar Dados</span>
                         </button>
                     </div>
-                    <!-- Avançado -->
                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-red-100 text-red-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Avançado</span>
                         <h3 class="text-2xl font-bold mb-3">Análise de Lucro (Ponte)</h3>
-                        <p class="mb-4 text-gray-600">Crie um gráfico de ponte (cascata) que mostra a transição do lucro de um ano para o outro, detalhando os fatores de variação.</p>
+                        
+                        <h5 class="purpose-title">Propósito do Gráfico:</h5>
+                        <p class="mb-3 text-gray-600">Focado em explicar a *variação* entre dois pontos de total (ex: Lucro 2023 vs Lucro 2024), detalhando os fatores que causaram o aumento ou a diminuição.</p>
+                        
+                        <h5 class="storytelling-title">Contexto (Storytelling):</h5>
+                        <p class="mb-4 text-gray-600">Lucramos mais este ano! Por quê? Este gráfico (ponte) mostrará que, partindo do lucro anterior, o "Aumento de Vendas" nos ajudou (+50k), mas o "Aumento de Custos" nos prejudicou (-25k), até chegar no lucro atual.</p>
+
+                        <h5 class="task-title">Sua Tarefa:</h5>
+                        <p class="mb-4 text-gray-600">Crie um gráfico de ponte (cascata) que mostra a transição do lucro de um ano para o outro, detalhando os fatores de variação. (Dica: Defina o primeiro e o último item como "Total").</p>
+
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
                         <div class="data-table mb-4">Fator;Variação (R$)
 Lucro Ano Anterior;150000
@@ -313,15 +420,13 @@ Lucro Ano Atual;</div>
                 </div>
             </section>
             
-            <!-- Categoria: Exercícios Práticos -->
             <section id="exercicios" class="category-content">
                  <div class="text-center mb-8 border-b pb-4">
                     <h2 class="text-3xl font-bold text-purple-800">Exercícios Práticos para Alunos</h2>
                     <p class="text-lg text-gray-600 mt-2">Use os dados abaixo para criar o gráfico que melhor representa a informação e responda à pergunta.</p>
                 </div>
                 <div class="grid md:grid-cols-2 gap-8">
-                     <!-- Exercício 1 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <h3 class="text-2xl font-bold mb-3 text-purple-700">1. Análise de Vendas de Livraria</h3>
                         <p class="mb-4 text-gray-600">Você é o gerente de uma livraria e precisa apresentar o faturamento do primeiro semestre. Crie um gráfico de <b>colunas</b> para comparar as vendas de cada mês e identifique qual foi o melhor e o pior mês em vendas.</p>
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
@@ -337,7 +442,6 @@ Junho;31.200</div>
                             <span>Copiar Dados</span>
                         </button>
                     </div>
-                    <!-- Exercício 2 -->
                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                          <h3 class="text-2xl font-bold mb-3 text-purple-700">2. Origem do Tráfego do Site</h3>
                         <p class="mb-4 text-gray-600">O time de marketing quer saber de onde vêm os visitantes do site da empresa. Crie um gráfico de <b>pizza</b> para mostrar a proporção de visitantes de cada fonte. Qual é a principal origem do tráfego?</p>
@@ -353,8 +457,7 @@ Campanhas Pagas;1.850</div>
                             <span>Copiar Dados</span>
                         </button>
                     </div>
-                     <!-- Exercício 3 -->
-                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <h3 class="text-2xl font-bold mb-3 text-purple-700">3. Crescimento de Seguidores</h3>
                         <p class="mb-4 text-gray-600">Compare o crescimento de seguidores de duas redes sociais nos últimos 6 meses. Crie um gráfico de <b>linhas</b> que mostre a evolução de ambas. Qual rede social apresentou um crescimento mais acelerado?</p>
                         <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
@@ -370,7 +473,6 @@ Mês 6;2500;1980</div>
                             <span>Copiar Dados</span>
                         </button>
                     </div>
-                    <!-- Exercício 4 -->
                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                          <h3 class="text-2xl font-bold mb-3 text-purple-700">4. Desempenho de Alunos</h3>
                         <p class="mb-4 text-gray-600">Um coordenador pedagógico precisa comparar as notas médias de duas turmas em diferentes matérias. Crie um gráfico de <b>barras agrupadas</b> para a análise. Em qual matéria a Turma A se saiu melhor que a Turma B?</p>
