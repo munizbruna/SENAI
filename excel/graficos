@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de Gráficos no Excel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Fundo cinza claro */
+        }
+        .data-table {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-family: monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+        .nav-button {
+            transition: all 0.3s ease;
+        }
+        .nav-button.active {
+            background-color: #1d4ed8; /* Azul mais escuro */
+            color: white;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .category-content {
+            display: none;
+        }
+        .category-content.active {
+            display: block;
+        }
+        .copy-button {
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8">
+        <!-- Cabeçalho -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-900">Gerador de Exercícios de Gráficos</h1>
+            <p class="text-lg text-gray-600 mt-2">Pratique suas habilidades no Excel com estes desafios</p>
+        </header>
+
+        <!-- Navegação por Categorias -->
+        <nav class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-8" id="category-nav">
+            <button data-category="coluna" class="nav-button active bg-blue-600 text-white py-2 px-5 rounded-lg font-semibold hover:bg-blue-700">
+                Colunas
+            </button>
+            <button data-category="barra" class="nav-button bg-white text-gray-700 py-2 px-5 rounded-lg font-semibold hover:bg-gray-100 border border-gray-300">
+                Barras
+            </button>
+            <button data-category="pizza" class="nav-button bg-white text-gray-700 py-2 px-5 rounded-lg font-semibold hover:bg-gray-100 border border-gray-300">
+                Pizza
+            </button>
+            <button data-category="linha" class="nav-button bg-white text-gray-700 py-2 px-5 rounded-lg font-semibold hover:bg-gray-100 border border-gray-300">
+                Linhas
+            </button>
+             <button data-category="dispersao" class="nav-button bg-white text-gray-700 py-2 px-5 rounded-lg font-semibold hover:bg-gray-100 border border-gray-300">
+                Dispersão
+            </button>
+             <button data-category="cascata" class="nav-button bg-white text-gray-700 py-2 px-5 rounded-lg font-semibold hover:bg-gray-100 border border-gray-300">
+                Cascata
+            </button>
+            <button data-category="exercicios" class="nav-button bg-purple-600 text-white py-2 px-5 rounded-lg font-semibold hover:bg-purple-700 border border-purple-700">
+                Exercícios Práticos
+            </button>
+        </nav>
+
+        <main>
+            <!-- Categoria: Gráficos de Coluna -->
+            <section id="coluna" class="category-content active">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Básico -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
+                        <h3 class="text-2xl font-bold mb-3">Vendas Mensais</h3>
+                        <p class="mb-4 text-gray-600">Crie um gráfico de colunas simples para visualizar o total de vendas de cada mês.</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Mês;Vendas (R$)
+Jan;5.200
+Fev;7.800
+Mar;6.500
+Abr;9.300
+Mai;8.100
+Jun;11.500</div>
+                        <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                    <!-- Avançado -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <span class="inline-block bg-red-100 text-red-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Avançado</span>
+                        <h3 class="text-2xl font-bold mb-3">Vendas Trimestrais por Produto</h3>
+                        <p class="mb-4 text-gray-600">Crie um gráfico de colunas agrupadas para comparar o desempenho de vendas de diferentes produtos ao longo dos trimestres.</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Produto;T1;T2;T3;T4
+Produto A;15000;17000;16500;19000
+Produto B;12000;13500;14000;15500
+Produto C;18000;16000;18500;17000</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categoria: Gráficos de Barra -->
+            <section id="barra" class="category-content">
+                <div class="grid md:grid-cols-2 gap-8">
+                     <!-- Básico -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
+                        <h3 class="text-2xl font-bold mb-3">População por Cidade</h3>
+                        <p class="mb-4 text-gray-600">Use um gráfico de barras para comparar a população de diferentes cidades. Ideal para rótulos longos.</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Cidade;População
+São Paulo;12.330.000
+Rio de Janeiro;6.748.000
+Brasília;3.055.000
+Salvador;2.887.000
+Fortaleza;2.687.000</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                    <!-- Avançado -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <span class="inline-block bg-red-100 text-red-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Avançado</span>
+                        <h3 class="text-2xl font-bold mb-3">Pesquisa de Satisfação</h3>
+                        <p class="mb-4 text-gray-600">Crie um gráfico de barras 100% empilhadas para mostrar a proporção de cada nível de satisfação por departamento.</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Departamento;Ótimo;Bom;Regular;Ruim
+Vendas;50;80;30;10
+Marketing;45;60;15;5
+Suporte;70;90;20;8</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categoria: Gráficos de Pizza -->
+            <section id="pizza" class="category-content">
+                <div class="grid md:grid-cols-2 gap-8">
+                     <!-- Básico -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
+                        <h3 class="text-2xl font-bold mb-3">Distribuição de Despesas</h3>
+                        <p class="mb-4 text-gray-600">Crie um gráfico de pizza para mostrar como as despesas mensais são distribuídas entre diferentes categorias.</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Categoria;Valor (R$)
+Moradia;1500
+Transporte;400
+Alimentação;800
+Lazer;300
+Outros;250</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                    <!-- Avançado -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <span class="inline-block bg-red-100 text-red-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Avançado</span>
+                        <h3 class="text-2xl font-bold mb-3">Market Share (Gráfico de Rosca)</h3>
+                        <p class="mb-4 text-gray-600">Crie um gráfico de rosca para visualizar a participação de mercado, que permite inserir um total ou um ícone no centro.</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Marca;Participação (%)
+Marca A;45
+Marca B;30
+Marca C;12
+Outras;13</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Categoria: Gráficos de Linha -->
+            <section id="linha" class="category-content">
+                <div class="grid md:grid-cols-2 gap-8">
+                     <!-- Básico -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
+                        <h3 class="text-2xl font-bold mb-3">Variação da Temperatura</h3>
+                        <p class="mb-4 text-gray-600">Use um gráfico de linhas para mostrar a evolução da temperatura ao longo de um dia.</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Hora;Temperatura (°C)
+06:00;18
+09:00;22
+12:00;28
+15:00;31
+18:00;25
+21:00;21</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                    <!-- Avançado -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <span class="inline-block bg-red-100 text-red-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Avançado</span>
+                        <h3 class="text-2xl font-bold mb-3">Pesquisa de Intenção de Votos</h3>
+                        <p class="mb-4 text-gray-600">Crie um gráfico de linhas para comparar a evolução da intenção de votos de diferentes candidatos ao longo do tempo.</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Mês;Candidato A (%);Candidato B (%);Candidato C (%)
+Julho;35;40;15
+Agosto;37;38;16
+Setembro;36;41;12
+Outubro;40;39;11</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Categoria: Gráficos de Dispersão -->
+            <section id="dispersao" class="category-content">
+                <div class="grid md:grid-cols-2 gap-8">
+                     <!-- Básico -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
+                        <h3 class="text-2xl font-bold mb-3">Investimento vs. Retorno</h3>
+                        <p class="mb-4 text-gray-600">Crie um gráfico de dispersão (XY) para analisar a correlação entre o investimento em marketing e o retorno obtido.</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Investimento (R$);Retorno (R$)
+1000;5000
+1500;7800
+2000;9500
+2500;11000
+3000;15200
+3500;16000</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                    <!-- Avançado -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <span class="inline-block bg-red-100 text-red-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Avançado</span>
+                        <h3 class="text-2xl font-bold mb-3">Análise de Produtos (Bolhas)</h3>
+                        <p class="mb-4 text-gray-600">Crie um gráfico de bolhas para comparar produtos. Use Preço (X), Satisfação (Y) e Volume de Vendas (tamanho da bolha).</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Produto;Preço (R$);Satisfação (0-10);Vendas (Unidades)
+Produto A;50;8,5;1200
+Produto B;75;9,2;800
+Produto C;40;7,1;2500
+Produto D;90;9,5;1100
+Produto E;65;8,0;1800</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Categoria: Gráficos de Cascata -->
+            <section id="cascata" class="category-content">
+                <div class="grid md:grid-cols-2 gap-8">
+                     <!-- Básico -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
+                        <h3 class="text-2xl font-bold mb-3">Fluxo de Caixa Mensal</h3>
+                        <p class="mb-4 text-gray-600">Crie um gráfico de cascata para visualizar como o saldo inicial é afetado por receitas e despesas, resultando no saldo final.</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Descrição;Valor (R$)
+Saldo Inicial;5000
+Receita Vendas;10000
+Custo Mercadoria;-4000
+Despesas Admin;-2500
+Outras Receitas;1500
+Saldo Final;</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                    <!-- Avançado -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <span class="inline-block bg-red-100 text-red-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Avançado</span>
+                        <h3 class="text-2xl font-bold mb-3">Análise de Lucro (Ponte)</h3>
+                        <p class="mb-4 text-gray-600">Crie um gráfico de ponte (cascata) que mostra a transição do lucro de um ano para o outro, detalhando os fatores de variação.</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Fator;Variação (R$)
+Lucro Ano Anterior;150000
+Aumento de Vendas;50000
+Aumento de Custos;-25000
+Redução Despesas;15000
+Novos Investimentos;-10000
+Lucro Ano Atual;</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Categoria: Exercícios Práticos -->
+            <section id="exercicios" class="category-content">
+                 <div class="text-center mb-8 border-b pb-4">
+                    <h2 class="text-3xl font-bold text-purple-800">Exercícios Práticos para Alunos</h2>
+                    <p class="text-lg text-gray-600 mt-2">Use os dados abaixo para criar o gráfico que melhor representa a informação e responda à pergunta.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                     <!-- Exercício 1 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <h3 class="text-2xl font-bold mb-3 text-purple-700">1. Análise de Vendas de Livraria</h3>
+                        <p class="mb-4 text-gray-600">Você é o gerente de uma livraria e precisa apresentar o faturamento do primeiro semestre. Crie um gráfico de <b>colunas</b> para comparar as vendas de cada mês e identifique qual foi o melhor e o pior mês em vendas.</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Mês;Faturamento (R$)
+Janeiro;22.500
+Fevereiro;19.800
+Março;25.100
+Abril;23.700
+Maio;28.900
+Junho;31.200</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                    <!-- Exercício 2 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                         <h3 class="text-2xl font-bold mb-3 text-purple-700">2. Origem do Tráfego do Site</h3>
+                        <p class="mb-4 text-gray-600">O time de marketing quer saber de onde vêm os visitantes do site da empresa. Crie um gráfico de <b>pizza</b> para mostrar a proporção de visitantes de cada fonte. Qual é a principal origem do tráfego?</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Fonte;Visitantes
+Busca Orgânica;8.540
+Redes Sociais;4.210
+Tráfego Direto;3.150
+Links de Referência;2.500
+Campanhas Pagas;1.850</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                     <!-- Exercício 3 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                        <h3 class="text-2xl font-bold mb-3 text-purple-700">3. Crescimento de Seguidores</h3>
+                        <p class="mb-4 text-gray-600">Compare o crescimento de seguidores de duas redes sociais nos últimos 6 meses. Crie um gráfico de <b>linhas</b> que mostre a evolução de ambas. Qual rede social apresentou um crescimento mais acelerado?</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Mês;Rede Social A;Rede Social B
+Mês 1;1200;800
+Mês 2;1350;950
+Mês 3;1520;1150
+Mês 4;1780;1400
+Mês 5;2100;1650
+Mês 6;2500;1980</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                    <!-- Exercício 4 -->
+                    <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
+                         <h3 class="text-2xl font-bold mb-3 text-purple-700">4. Desempenho de Alunos</h3>
+                        <p class="mb-4 text-gray-600">Um coordenador pedagógico precisa comparar as notas médias de duas turmas em diferentes matérias. Crie um gráfico de <b>barras agrupadas</b> para a análise. Em qual matéria a Turma A se saiu melhor que a Turma B?</p>
+                        <h4 class="font-semibold mb-2">Dados para o Gráfico:</h4>
+                        <div class="data-table mb-4">Matéria;Nota Média (Turma A);Nota Média (Turma B)
+Matemática;7,5;8,1
+Português;8,8;8,5
+História;9,2;8,9
+Ciências;8,1;7,9</div>
+                         <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span>Copiar Dados</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Script de Navegação
+        const nav = document.getElementById('category-nav');
+        const buttons = nav.querySelectorAll('button');
+        const sections = document.querySelectorAll('.category-content');
+
+        nav.addEventListener('click', (e) => {
+            const targetButton = e.target.closest('button');
+            if (targetButton) {
+                const category = targetButton.dataset.category;
+
+                // Reset all buttons
+                buttons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-blue-600', 'text-white', 'bg-purple-600');
+                    if(btn.dataset.category !== 'exercicios'){
+                         btn.classList.add('bg-white', 'text-gray-700');
+                    } else {
+                        btn.classList.remove('hover:bg-purple-700');
+                        btn.classList.add('bg-purple-600', 'text-white', 'hover:bg-purple-700');
+                    }
+                });
+                
+                // Activate the clicked button
+                 if(targetButton.dataset.category === 'exercicios'){
+                     targetButton.classList.add('active', 'bg-purple-800');
+                 } else {
+                     targetButton.classList.add('active', 'bg-blue-600', 'text-white');
+                     targetButton.classList.remove('bg-white', 'text-gray-700');
+                 }
+
+
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                    if (section.id === category) {
+                        section.classList.add('active');
+                    }
+                });
+            }
+        });
+
+        // Script do Botão de Copiar
+        const allCopyButtons = document.querySelectorAll('.copy-button');
+        allCopyButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const card = e.target.closest('.bg-white');
+                const dataTable = card.querySelector('.data-table');
+                let dataText = dataTable.innerText;
+                
+                // Converte os dados para o formato de tabulação, ideal para colar no Excel
+                const dataForClipboard = dataText.replace(/;/g, '\t');
+
+                // Create a temporary textarea element to hold the text
+                const textArea = document.createElement('textarea');
+                textArea.value = dataForClipboard;
+                
+                // Make the textarea invisible and append it to the body
+                textArea.style.position = 'fixed';
+                textArea.style.top = 0;
+                textArea.style.left = 0;
+                textArea.style.width = '2em';
+                textArea.style.height = '2em';
+                textArea.style.padding = 0;
+                textArea.style.border = 'none';
+                textArea.style.outline = 'none';
+                textArea.style.boxShadow = 'none';
+                textArea.style.background = 'transparent';
+                document.body.appendChild(textArea);
+
+                // Select the text and copy it
+                textArea.focus();
+                textArea.select();
+
+                try {
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        const buttonTextSpan = button.querySelector('span');
+                        const originalText = buttonTextSpan.textContent;
+                        button.classList.add('bg-green-500', 'text-white');
+                        buttonTextSpan.textContent = 'Copiado!';
+                        
+                        setTimeout(() => {
+                            buttonTextSpan.textContent = originalText;
+                            button.classList.remove('bg-green-500', 'text-white');
+                        }, 2000);
+                    } else {
+                        throw new Error('Copy command failed');
+                    }
+                } catch (err) {
+                    console.error('Erro ao copiar dados: ', err);
+                    const buttonTextSpan = button.querySelector('span');
+                    buttonTextSpan.textContent = 'Erro ao copiar';
+                }
+
+                // Remove the temporary textarea
+                document.body.removeChild(textArea);
+            });
+        });
+        
+        // Ativar a primeira aba por padrão ao carregar
+        document.addEventListener('DOMContentLoaded', () => {
+             buttons[0].click();
+        });
+    </script>
+
+</body>
+</html>
