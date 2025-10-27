@@ -37,7 +37,7 @@
         .copy-button {
             transition: background-color 0.3s ease;
         }
-        /* Estilos adicionados para os novos títulos */
+        /* Estilos para os títulos de propósito/storytelling */
         .purpose-title {
             font-size: 0.95rem;
             font-weight: 600;
@@ -92,6 +92,19 @@
 
         <main>
             <section id="coluna" class="category-content active">
+                
+                <div class="bg-blue-50 border border-blue-200 text-blue-900 p-6 rounded-lg mb-8 shadow-sm">
+                    <h2 class="text-3xl font-bold mb-3 text-blue-800">Gráfico de Colunas</h2>
+                    <p class="text-lg mb-4">Este é o gráfico mais comum e direto para comparações de magnitude entre diferentes grupos ou categorias.</p>
+                    <h4 class="font-semibold text-base mb-2">Casos Recomendados:</h4>
+                    <ul class="list-disc list-inside mb-4 pl-2">
+                        <li>Comparar vendas de produtos diferentes em um mesmo período.</li>
+                        <li>Visualizar o desempenho (ex: notas, faturamento) de vendedores, lojas ou alunos.</li>
+                        <li>Mostrar valores de um item ao longo de poucos períodos de tempo (ex: faturamento por trimestre).</li>
+                    </ul>
+                    <h4 class="font-semibold text-base mb-2">Tipos de Dados que Privilegia:</h4>
+                    <p class="text-base">Excelente para analisar um <strong>Eixo de Categoria (Dados de Texto)</strong>, como "Produto A", "Mês", "Loja", contra um <strong>Eixo de Valor (Dados Numéricos)</strong>, como "Total de Vendas", "Quantidade", "Nota".</p>
+                </div>
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
@@ -146,6 +159,19 @@ Produto C;18000;16000;18500;17000</div>
             </section>
 
             <section id="barra" class="category-content">
+                
+                <div class="bg-blue-50 border border-blue-200 text-blue-900 p-6 rounded-lg mb-8 shadow-sm">
+                    <h2 class="text-3xl font-bold mb-3 text-blue-800">Gráfico de Barras</h2>
+                    <p class="text-lg mb-4">Funcionalmente idêntico ao Gráfico de Colunas (comparação), mas com os eixos invertidos. As categorias ficam no eixo Y (vertical) e os valores no eixo X (horizontal).</p>
+                    <h4 class="font-semibold text-base mb-2">Casos Recomendados:</h4>
+                    <ul class="list-disc list-inside mb-4 pl-2">
+                        <li><strong>A principal indicação é quando os rótulos (nomes) das categorias são longos</strong>, como nomes de cidades, pessoas ou respostas de pesquisas.</li>
+                        <li>Comparar a população de cidades (ex: "São Paulo", "Rio de Janeiro").</li>
+                        <li>Mostrar o resultado de pesquisas com respostas longas (ex: "Muito Satisfeito", "Pouco Satisfeito").</li>
+                    </ul>
+                    <h4 class="font-semibold text-base mb-2">Tipos de Dados que Privilegia:</h4>
+                    <p class="text-base">Ideal para um <strong>Eixo de Categoria com Texto Longo</strong> e um <strong>Eixo de Valor (Numérico)</strong>. A leitura dos rótulos na vertical é muito mais fácil do que se estivessem inclinados em um gráfico de colunas.</p>
+                </div>
                 <div class="grid md:grid-cols-2 gap-8">
                      <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
@@ -199,6 +225,20 @@ Suporte;70;90;20;8</div>
             </section>
 
             <section id="pizza" class="category-content">
+                
+                <div class="bg-blue-50 border border-blue-200 text-blue-900 p-6 rounded-lg mb-8 shadow-sm">
+                    <h2 class="text-3xl font-bold mb-3 text-blue-800">Gráfico de Pizza (ou Rosca)</h2>
+                    <p class="text-lg mb-4">Usado para mostrar a proporção de cada parte em relação a um valor total (100%). Cada "fatia" representa uma porcentagem do todo.</p>
+                    <h4 class="font-semibold text-base mb-2">Casos Recomendados:</h4>
+                    <ul class="list-disc list-inside mb-4 pl-2">
+                        <li>Mostrar a composição de despesas (ex: "Moradia", "Transporte", "Lazer").</li>
+                        <li>Exibir a participação de mercado (Market Share) de empresas.</li>
+                        <li>Analisar a origem de tráfego de um site (ex: "Busca Orgânica", "Redes Sociais").</li>
+                        <li><strong>Atenção:</strong> Funciona mal com muitas categorias (mais de 5 ou 6), pois as fatias ficam pequenas e difíceis de comparar.</li>
+                    </ul>
+                    <h4 class="font-semibold text-base mb-2">Tipos de Dados que Privilegia:</h4>
+                    <p class="text-base">Requer uma <strong>Coluna de Categoria (Texto)</strong> e uma <strong>Coluna de Valor (Numérico)</strong>, onde a soma de todos os valores representa o 100%.</p>
+                </div>
                 <div class="grid md:grid-cols-2 gap-8">
                      <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
@@ -253,6 +293,20 @@ Outras;13</div>
             </section>
 
             <section id="linha" class="category-content">
+
+                <div class="bg-blue-50 border border-blue-200 text-blue-900 p-6 rounded-lg mb-8 shadow-sm">
+                    <h2 class="text-3xl font-bold mb-3 text-blue-800">Gráfico de Linhas</h2>
+                    <p class="text-lg mb-4">É a principal ferramenta para visualizar tendências e a evolução de dados contínuos ao longo de um período de tempo ou sequência.</p>
+                    <h4 class="font-semibold text-base mb-2">Casos Recomendados:</h4>
+                    <ul class="list-disc list-inside mb-4 pl-2">
+                        <li>Mostrar a variação da temperatura ao longo do dia.</li>
+                        <li>Analisar a flutuação do preço de ações ao longo do ano.</li>
+                        <li>Comparar o crescimento de seguidores (múltiplas linhas) de redes sociais ao longo dos meses.</li>
+                        <li>Visualizar a "corrida eleitoral" (intenção de votos) ao longo do tempo.</li>
+                    </ul>
+                    <h4 class="font-semibold text-base mb-2">Tipos de Dados que Privilegia:</h4>
+                    <p class="text-base">Requer um <strong>Eixo de Sequência (Datas, Horas, Meses, Anos)</strong> e um (ou mais) <strong>Eixos de Valor (Numérico)</strong>. A conexão dos pontos revela a tendência, subida ou descida.</p>
+                </div>
                 <div class="grid md:grid-cols-2 gap-8">
                      <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
@@ -276,7 +330,8 @@ Outras;13</div>
 18:00;25
 21:00;21</div>
                          <button class="copy-button mt-auto bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg inline-flex items-center justify-center">
-                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                           <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2
+0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             <span>Copiar Dados</span>
                         </button>
                     </div>
@@ -308,6 +363,19 @@ Outubro;40;39;11</div>
             </section>
             
             <section id="dispersao" class="category-content">
+
+                <div class="bg-blue-50 border border-blue-200 text-blue-900 p-6 rounded-lg mb-8 shadow-sm">
+                    <h2 class="text-3xl font-bold mb-3 text-blue-800">Gráfico de Dispersão (XY) e Bolhas</h2>
+                    <p class="text-lg mb-4">Usado para identificar a <strong>correlação (relação)</strong> entre duas ou três variáveis numéricas. Ele responde se uma variável tende a aumentar ou diminuir quando a outra aumenta.</p>
+                    <h4 class="font-semibold text-base mb-2">Casos Recomendados:</h4>
+                    <ul class="list-disc list-inside mb-4 pl-2">
+                        <li>Analisar se o investimento em marketing (X) afeta o retorno em vendas (Y).</li>
+                        <li>Verificar se a altura (X) de uma pessoa tem relação com seu peso (Y).</li>
+                        <li><strong>Gráfico de Bolhas (Avançado):</strong> Adiciona uma terceira variável (Z) representada pelo *tamanho* da bolha. Ex: Preço (X) vs. Satisfação (Y) vs. Volume de Vendas (Tamanho).</li>
+                    </ul>
+                    <h4 class="font-semibold text-base mb-2">Tipos de Dados que Privilegia:</h4>
+                    <p class="text-base">Diferente dos outros, este gráfico requer <strong>duas Colunas de Valor (Numérico)</strong>, uma para o Eixo X e outra para o Eixo Y. O gráfico de bolhas requer uma terceira coluna numérica.</p>
+                </div>
                 <div class="grid md:grid-cols-2 gap-8">
                      <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
@@ -364,6 +432,19 @@ Produto E;65;8,0;1800</div>
             </section>
             
             <section id="cascata" class="category-content">
+                
+                <div class="bg-blue-50 border border-blue-200 text-blue-900 p-6 rounded-lg mb-8 shadow-sm">
+                    <h2 class="text-3xl font-bold mb-3 text-blue-800">Gráfico de Cascata (Ponte)</h2>
+                    <p class="text-lg mb-4">Este gráfico é usado para mostrar o efeito cumulativo de uma série de valores positivos (ganhos) e negativos (perdas) sobre um valor inicial.</p>
+                    <h4 class="font-semibold text-base mb-2">Casos Recomendados:</h4>
+                    <ul class="list-disc list-inside mb-4 pl-2">
+                        <li>Análise de Fluxo de Caixa (Saldo Inicial -> Receitas -> Custos -> Saldo Final).</li>
+                        <li>Demonstrativo de Resultados (DRE), mostrando como a Receita se torna Lucro Líquido.</li>
+                        <li>Análise de variação (Gráfico de Ponte), explicando o que causou a mudança entre o lucro de um ano e o outro.</li>
+                    </ul>
+                    <h4 class="font-semibold text-base mb-2">Tipos de Dados que Privilegia:</h4>
+                    <p class="text-base">Utiliza uma <strong>Coluna de Categoria (Texto)</strong>, como "Receita", "Custos", e uma <strong>Coluna de Valor (Numérico)</strong>, que pode incluir tanto números positivos quanto negativos.</p>
+                </div>
                 <div class="grid md:grid-cols-2 gap-8">
                      <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col">
                         <span class="inline-block bg-green-100 text-green-800 text-sm font-medium mb-3 px-3 py-1 rounded-full self-start">Básico</span>
